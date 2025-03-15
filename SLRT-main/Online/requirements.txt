@@ -12,6 +12,6 @@ torch
 torchvision
 tqdm==4.62.3
 transformers==4.11.3
-wandb==0.12.17
+wandb
 gensim
 ctcdecode
