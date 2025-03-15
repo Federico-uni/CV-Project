@@ -9,7 +9,7 @@ PyYAML==6.0
 scikit_learn==1.1.2
 timm==0.4.12
 torch
-torchvision==0.10.0
+torchvision
 tqdm==4.62.3
 transformers==4.11.3
 wandb==0.12.17
