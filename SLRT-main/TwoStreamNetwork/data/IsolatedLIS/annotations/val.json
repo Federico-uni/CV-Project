@@ -1,0 +1,48 @@
+[
+	{
+
+        "id": "1165",
+        "text": "affumicato",
+        "type": "Aggettivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/499467.mp4",
+        "category": "cibo-bevande",
+        "gloss": "AFFUMICATO",
+        "frame_count": 90
+    },
+    {
+        "id": "1170",
+        "text": "mettere a mollo",
+        "type": "Verbo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/505700.mp4",
+        "category": "stile-di-vita",
+        "gloss": "METTERE MOLLO",
+        "frame_count": 155
+    },
+    {
+        "id": "1171",
+        "text": "bevanda analcolica",
+        "type": "Sostantivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/496773.mp4",
+        "category": "cibo-bevande",
+        "gloss": "BEVANDA ANALCOLICA",
+        "frame_count": 99
+    },
+    {
+        "id": "1172",
+        "text": "uovo alla coque",
+        "type": "Sostantivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/507126.mp4",
+        "category": "cibo-bevande",
+        "gloss": "UOVO COQUE",
+        "frame_count": 130
+    },
+    {
+        "id": "1174",
+        "text": "zuppa",
+        "type": "Sostantivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/497041.mp4",
+        "category": "cibo-bevande",
+        "gloss": "ZUPPA",
+        "frame_count": 95
+    }
+    ]

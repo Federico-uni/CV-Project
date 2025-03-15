@@ -1,0 +1,38 @@
+[
+    {
+        "id": "18022",
+        "text": "7 Up",
+        "type": "Sostantivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/287282.mp4",
+        "category": "cibo-bevande",
+        "gloss": "7 UP",
+        "frame_count": 82
+    },
+    {
+        "id": "14670",
+        "text": "abramide comune",
+        "type": "Sostantivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/445640.mp4",
+        "category": "cibo-bevande",
+        "gloss": "ABRAMIDE COMUNE",
+        "frame_count": 133
+    },
+    {
+        "id": "14666",
+        "text": "acerina",
+        "type": "Sostantivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/279055.mp4",
+        "category": "cibo-bevande",
+        "gloss": "ACERINA",
+        "frame_count": 106
+    },
+    {
+        "id": "1258",
+        "text": "aceto",
+        "type": "Sostantivo",
+        "url": "https://media.spreadthesign.com/video/mp4/17/497818.mp4",
+        "category": "cibo-bevande",
+        "gloss": "ACETO",
+        "frame_count": 90
+    }
+]
