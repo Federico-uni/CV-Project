@@ -1,6 +1,6 @@
 from .recognition import RecognitionNetwork
-from mdoelling.translation import TranslationNetwork
-from mdoelling.denoiser import BagDenoiser
+from .translation import TranslationNetwork
+from .denoiser import BagDenoiser
 from utils.misc import get_logger
 import torch
 
