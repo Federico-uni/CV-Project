@@ -1,0 +1,5 @@
+mmcv==1.7.1
+lintel
+torch
+torchvision
+git+https://github.com/parlance/ctcdecode.git
