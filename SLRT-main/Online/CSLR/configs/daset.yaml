@@ -4,10 +4,10 @@ data:
   input_streams:
     - rgb  # Rimosso 'keypoint', perché non hai dati di keypoints
   #zip_file: ../../data/isolatedLIS/videos.zip   Se lavori con un archivio
-  train: /kaggle/working/CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/train.train
-  dev: /kaggle/working/CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/val.dev
-  test: /kaggle/working/CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/test.test
-  vocab_file: /kaggle/working/CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/vocab.vocab
+  train: ../../../TwoStreamNetwork/data/isolatedLIS/annotations/train.train
+  dev: ../../../TwoStreamNetwork/data/isolatedLIS/annotations/val.dev
+  test: ../../../TwoStreamNetwork/data/isolatedLIS/annotations/test.test
+  vocab_file: ../../../TwoStreamNetwork/data/isolatedLIS/annotations/vocab.vocab
   dataset_name: isolatedLIS
   level: word
   txt_lowercase: true
