@@ -79,6 +79,9 @@ class ISLRDataset(torch.utils.data.Dataset):
 
     def load_annotations(self, split):
         self.annotation_file = self.dataset_cfg[split]
+        print("self.dataset_cfg: ", self.dataset_cfg)
+        print("---------------------------------------------")
+        print("self.annotation_file: ", self.annotation_file)
         self.root = os.path.join(*(self.annotation_file.split('/')[:-1]))
         try:
             with open(self.annotation_file, 'rb') as f:
