@@ -149,31 +149,42 @@ class ISLRDataset(torch.utils.data.Dataset):
         return word_emb_tab
     
     def create_vocab(self):
+        vocab = []  # Inizializziamo la variabile per evitare UnboundLocalError
+     
         if 'WLASL' in self.dataset_cfg['dataset_name'] or 'NMFs-CSL' in self.dataset_cfg['dataset_name']:
             annotation = self.load_annotations('train')
-            vocab = []
             for item in annotation:
-                if item['label'] not in vocab:
+                if 'label' in item and item['label'] not in vocab:
                     vocab.append(item['label'])
             vocab = sorted(vocab)
+     
         elif 'MSASL' in self.dataset_cfg['dataset_name']:
-            with open(os.path.join(self.root, 'MSASL_classes.json'), 'rb') as f:
-                all_vocab = json.load(f)
-            num = int(self.dataset_cfg['dataset_name'].split('_')[-1])
-            vocab = all_vocab[:num]
+            try:
+                with open(os.path.join(self.root, 'MSASL_classes.json'), 'r', encoding='utf-8') as f:
+                    all_vocab = json.load(f)
+                num = int(self.dataset_cfg['dataset_name'].split('_')[-1])
+                vocab = all_vocab[:num]
+            except Exception as e:
+                print(f"❌ Errore durante il caricamento di MSASL_classes.json: {e}")
+     
         elif self.dataset_cfg['dataset_name'] in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'phoenix', 'phoenix2014', 'phoenixcomb', 'csl', 'csl_iso']:
-            vocab_file = self.dataset_cfg['vocab_file']
-            with open(vocab_file, 'rb') as f:
-                vocab = json.load(f)
-            if '<blank>' in vocab:
-                assert vocab.index('<blank>') == 0
-            #vfile2raw_len
-            if 'iso' in self.dataset_cfg['dataset_name']:
-                if self.dataset_cfg['dataset_name'] == 'phoenix_iso':
-                    with gzip.open('../../data/phoenix_2014t/phoenix14t.{}'.format(self.split), 'rb') as f:
-                        ori_meta = pickle.load(f)
-                    for item in ori_meta:
-                        self.vfile2raw_vlens[item['name']] = item['num_frames']
+            vocab_file = self.dataset_cfg.get('vocab_file', None)
+            if vocab_file and os.path.exists(vocab_file):
+                try:
+                    with open(vocab_file, 'rb') as f:
+                        vocab = pickle.load(f)
+                    if '<blank>' in vocab:
+                        assert vocab.index('<blank>') == 0
+                except Exception as e:
+                    print(f"❌ Errore nel caricamento del vocabolario Pickle: {e}")
+            else:
+                print("⚠ Nessun vocab_file trovato nel dataset_cfg!")
+     
+        # Assicuriamoci che vocab non sia vuoto
+        if not vocab:
+            raise ValueError("❌ Errore: Il vocabolario è vuoto! Controlla che il file vocab.pkl sia corretto.")
+     
+        print(f"✅ Vocab caricato con {len(vocab)} parole.")
         return vocab
     
     def create_framelabel(self):
