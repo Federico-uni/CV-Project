@@ -150,11 +150,11 @@ if __name__ == "__main__":
     wandb_run = make_wandb(model_dir=model_dir, cfg=cfg)
     if is_main_process():
         os.system('cp {} {}/'.format(args.config, model_dir))
-        os.system('cp -r modelling/*.py {}/'.format(model_dir))
-        os.system('cp -r utils/*.py {}/'.format(model_dir))
-        os.system('cp -r dataset/*.py {}/'.format(model_dir))
-        os.system('cp prediction.py {}/'.format(model_dir))
-        os.system('cp prediction_slide.py {}/'.format(model_dir))
+        os.system('cp -r SLRT-main/Online/CSLR/modelling/*.py {}/'.format(model_dir))
+        os.system('cp -r SLRT-main/Online/CSLR/utils/*.py {}/'.format(model_dir))
+        os.system('cp -r SLRT-main/Online/CSLR/dataset/*.py {}/'.format(model_dir))
+        os.system('cp SLRT-main/Online/CSLR/prediction.py {}/'.format(model_dir))
+        os.system('cp SLRT-main/Online/CSLR/prediction_slide.py {}/'.format(model_dir))
     synchronize()
 
     #MODEL
