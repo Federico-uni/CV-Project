@@ -1,3 +1,16 @@
+# Determina il percorso base (modifica se necessario)
+BASE_DIR = "/kaggle/working/CV-Project/SLRT-main/Online/CSLR/"
+
+# Aggiungi le cartelle ai percorsi di ricerca per gli import
+sys.path.append(BASE_DIR)
+sys.path.append(os.path.join(BASE_DIR, "modelling"))
+sys.path.append(os.path.join(BASE_DIR, "utils"))
+sys.path.append(os.path.join(BASE_DIR, "dataset"))
+
+# Debug: verifica i percorsi caricati
+print("Percorsi nel sys.path:")
+for p in sys.path:
+    print(p)
 from typing import Text
 import warnings
 from modelling.model import build_model
