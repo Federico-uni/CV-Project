@@ -57,7 +57,7 @@ model:
     GlossTokenizer:
       gloss2id_file: ../../pretrained_models/mBart_de_2/gloss2ids.pkl
     s3d:
-      pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
+      pretrained_ckpt: CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
     keypoint_s3d: null  # Disattivato perché non hai keypoints
