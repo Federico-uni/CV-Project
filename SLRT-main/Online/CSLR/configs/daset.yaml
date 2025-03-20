@@ -7,7 +7,7 @@ data:
   train: CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/train.train
   dev: CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/val.dev
   test: CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/test.test
-  vocab_file: CV-Project/SLRT-main//TwoStreamNetwork/data/isolatedLIS/annotations/vocab.vocab
+  vocab_file: CV-Project/SLRT-main/TwoStreamNetwork/data/isolatedLIS/annotations/vocab.vocab
   dataset_name: isolatedLIS
   level: word
   txt_lowercase: true
