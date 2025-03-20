@@ -76,12 +76,14 @@ class ISLRDataset(torch.utils.data.Dataset):
         else:
             name2keypoints = None
         return name2keypoints
-
+import os
     def load_annotations(self, split):
         self.annotation_file = self.dataset_cfg[split]
-        print("self.dataset_cfg: ", self.dataset_cfg)
+        print("dataset_cfg")
+        print(os.path.abspath(self.dataset_cfg))
         print("---------------------------------------------")
-        print("self.annotation_file: ", self.annotation_file)
+        print("annotation_file")
+        print(os.path.abspath(self.annotation_file))
         self.root = os.path.join(*(self.annotation_file.split('/')[:-1]))
         try:
             with open(self.annotation_file, 'rb') as f:
