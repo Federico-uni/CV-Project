@@ -77,46 +77,70 @@ class ISLRDataset(torch.utils.data.Dataset):
             name2keypoints = None
         return name2keypoints
         
-    def load_annotations(self, split):
-        self.annotation_file = self.dataset_cfg[split]
-        print("dataset_cfg")
-        print(os.path.abspath(self.dataset_cfg))
-        print("---------------------------------------------")
-        print("annotation_file")
-        print(os.path.abspath(self.annotation_file))
-        self.root = os.path.join(*(self.annotation_file.split('/')[:-1]))
+def load_annotations(self, split):
+    print("\n========== DEBUG: load_annotations() ==========")
+    print(f"Split richiesto: {split}")
+    print(f"Dataset Config: {self.dataset_cfg}")
+    
+    # Controlla se lo split esiste nel dataset_cfg
+    if split not in self.dataset_cfg:
+        raise ValueError(f"Errore: lo split '{split}' non è presente in dataset_cfg! Controlla il file YAML.")
+    
+    self.annotation_file = self.dataset_cfg[split]
+    print(f"Percorso annotation_file (da YAML): {self.annotation_file}")
+    
+    # Convertire il percorso in assoluto se necessario
+    if not os.path.isabs(self.annotation_file):
+        self.annotation_file = os.path.abspath(self.annotation_file)
+    print(f"Percorso assoluto annotation_file: {self.annotation_file}")
+    
+    # Verifica se il file esiste
+    if not os.path.exists(self.annotation_file):
+        raise FileNotFoundError(f"Errore: il file '{self.annotation_file}' non esiste! Controlla il percorso nel file YAML.")
+    
+    # Determina la root della directory
+    self.root = os.path.dirname(self.annotation_file)
+    print(f"Root directory: {self.root}")
+    
+    # Caricamento dell'annotazione con gestione degli errori
+    try:
+        with open(self.annotation_file, 'rb') as f:
+            annotation = pickle.load(f)
+        print("File caricato correttamente con pickle.")
+    except Exception as e:
+        print(f"Errore con pickle: {e}, tentando con gzip...")
         try:
-            with open(self.annotation_file, 'rb') as f:
-                annotation = pickle.load(f)
-        except:
             with gzip.open(self.annotation_file, 'rb') as f:
                 annotation = pickle.load(f)
-
-        # load bag for phoenix_iso
-        if isinstance(annotation, dict):
-            #convert to list
-            annotation = list(annotation.values())
+            print("File caricato correttamente con gzip.")
+        except Exception as e:
+            raise RuntimeError(f"Errore nel caricamento del file '{self.annotation_file}': {e}")
+    
+    # Se annotation è un dizionario, convertilo in una lista
+    if isinstance(annotation, dict):
+        annotation = list(annotation.values())
+    
+    # Pulizia per dataset specifici
+    if 'WLASL' in self.dataset_cfg['dataset_name']:
+        variant_file = os.path.join(self.root, self.dataset_cfg['dataset_name'].split('_')[-1] + '.json')
+        print(f"Caricamento variant file: {variant_file}")
         
-        # clean WLASL
-        if 'WLASL' in self.dataset_cfg['dataset_name']:
-            variant_file = self.dataset_cfg['dataset_name'].split('_')[-1]+'.json'
-            variant_file = os.path.join(self.root, variant_file)
-            with open(variant_file, 'r') as f:
-                variant = json.load(f)
-            cleaned = []
-            for item in annotation:
-                if 'augmentation' not in item['video_file'] and item['name'] in list(variant.keys()):
-                    cleaned.append(item)
-            annotation = cleaned
+        if not os.path.exists(variant_file):
+            raise FileNotFoundError(f"Errore: il file '{variant_file}' non esiste!")
+        
+        with open(variant_file, 'r') as f:
+            variant = json.load(f)
+        
+        annotation = [item for item in annotation if 'augmentation' not in item['video_file'] and item['name'] in variant]
+        print(f"Annotazioni filtrate per WLASL: {len(annotation)}")
+    
+    elif 'MSASL' in self.dataset_cfg['dataset_name']:
+        annotation = [item for item in annotation if item['label'] in self.vocab]
+        print(f"Annotazioni filtrate per MSASL: {len(annotation)}")
+    
+    print("================================================\n")
+    return annotation
 
-        elif 'MSASL' in self.dataset_cfg['dataset_name']:
-            # num = int(self.dataset_cfg['dataset_name'].split('_')[-1])
-            cleaned = []
-            for item in annotation:
-                if item['label'] in self.vocab:
-                    cleaned.append(item)
-            annotation = cleaned
-        return annotation
     
     def load_word_emb_tab(self):
         fname = self.dataset_cfg['word_emb_file']
