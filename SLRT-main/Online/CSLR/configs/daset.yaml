@@ -5,9 +5,9 @@ data:
     - rgb  # Rimosso 'keypoint', perché non hai dati di keypoints
   #zip_file: ../../data/IsolatedLIS/videos.zip   Se lavori con un archivio
   train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.pkl
-  dev: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/val.dev
-  test: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/test.test
-  vocab_file: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/vocab.vocab
+  dev: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/val.pkl
+  test: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/test.pkl
+  vocab_file: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/vocab.pkl
   dataset_name: IsolatedLIS
   level: word
   txt_lowercase: true
@@ -28,7 +28,7 @@ testing:
 
 training:
   overwrite: True
-  model_dir: results/isolatedLIS_ISLR
+  model_dir: results/IsolatedLIS_ISLR
   random_seed: 321
   shuffle: True
   num_workers: 8
