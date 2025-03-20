@@ -76,7 +76,7 @@ class ISLRDataset(torch.utils.data.Dataset):
         else:
             name2keypoints = None
         return name2keypoints
-import os
+        
     def load_annotations(self, split):
         self.annotation_file = self.dataset_cfg[split]
         print("dataset_cfg")
