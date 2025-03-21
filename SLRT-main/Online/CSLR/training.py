@@ -160,6 +160,9 @@ if __name__ == "__main__":
     #MODEL
     #!!! Must-do sync_batch
     dataset = build_dataset(cfg['data'], 'train')
+    print("+==============DATASET IMPORTED FROM YAML========================+")
+    print("|", dataset)
+    print("+================================================================+")
     vocab = dataset.vocab
     cls_num = len(vocab)
     # make word emb table as tensor
