@@ -5,6 +5,10 @@ data:
     - rgb
     - keypoint
   keypoint_file: kaggle/input/pretrained-models-andkp/csl-daily-keypoints.pkl
+  use_keypoints:
+  - pose
+  - mouth_half
+  - hand
   #zip_file: ../../data/IsolatedLIS/videos.zip   Se lavori con un archivio
   train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.pkl
   dev: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/val.pkl
