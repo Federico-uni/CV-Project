@@ -85,8 +85,8 @@ class S3D_backbone(torch.nn.Module):
                     self.pyramid = PyramidNetwork(channels=[1024,832,480,192,64], kernel_size=3, num_levels=self.num_levels, temp_scale=[2,2,1,1], spat_scale=[2,2,2,2],
                                                     adapt_first=adapt_first)
 
-    def load_s3d_model_weight(self, model_path):
-        print(f"DEBUG: Percorso del modello atteso -> {model_path}")  # Stampa il percorso
+    def load_s3d_model_weight(self, model_path): 
+        print(f"DEBUG: Percorso del modello atteso -> {model_path}")
     
         if 'actioncls' in model_path:
             filename = glob.glob(os.path.join(model_path, '*.pt'))
@@ -94,7 +94,7 @@ class S3D_backbone(torch.nn.Module):
             if not filename:
                 raise FileNotFoundError(f"❌ Nessun file .pt trovato nella directory: {model_path}")
     
-            print(f"✅ Caricamento del modello pre-addestrato: {filename[0]}")
+            print(f"✅ Caricamento del modello pre-addestrato (actioncls): {filename[0]}")
             checkpoint = torch.load(filename[0], map_location='cpu')
             state_dict = checkpoint
             new_dict = {k.replace('module.', 'backbone.'): v for k, v in state_dict.items()}
@@ -111,7 +111,7 @@ class S3D_backbone(torch.nn.Module):
             if not filename:
                 raise FileNotFoundError(f"❌ Nessun file .pth.tar trovato nella directory: {model_path}")
     
-            print(f"✅ Caricamento del modello pre-addestrato: {filename[0]}")
+            print(f"✅ Caricamento del modello pre-addestrato (glosscls): {filename[0]}")
             checkpoint = torch.load(filename[0], map_location='cpu')
             state_dict = checkpoint['state_dict']
     
@@ -120,8 +120,22 @@ class S3D_backbone(torch.nn.Module):
             except:
                 neq_load_customized(self, state_dict, verbose=True)
     
+        # Condizione aggiuntiva generica per file .pt
+        elif os.path.isfile(model_path) and model_path.endswith('.pt'):
+            print(f"✅ Caricamento diretto del modello da file .pt: {model_path}")
+            checkpoint = torch.load(model_path, map_location='cpu')
+            state_dict = checkpoint
+            new_dict = {k.replace('module.', 'backbone.'): v for k, v in state_dict.items()}
+            state_dict = new_dict
+    
+            try:
+                self.load_state_dict(state_dict)
+            except:
+                neq_load_customized(self, state_dict, verbose=True)
+    
         else:
             raise ValueError(f"❌ Percorso non riconosciuto per il modello: {model_path}")
+
         
     def set_train(self):
         self.train()
