@@ -55,26 +55,34 @@ class ISLRDataset(torch.utils.data.Dataset):
 
     def load_keypoints(self):
         if 'keypoint' in self.input_streams or 'keypoint_coord' in self.input_streams or 'trajectory' in self.input_streams:
-            with open(self.dataset_cfg['keypoint_file'],'rb') as f:
+            with open(self.dataset_cfg['keypoint_file'], 'rb') as f:
                 name2all_keypoints = pickle.load(f)
+    
             assert 'hrnet' in self.dataset_cfg['keypoint_file']
             self.logger.info('Keypoints source: hrnet')
             Part2index = Hrnet_Part2index
-
+    
             name2keypoints = {}
             for name, all_keypoints in name2all_keypoints.items():
+                all_keypoints = np.array(all_keypoints)  # 👈 Fix importante: cast a NumPy array
                 name2keypoints[name] = []
+    
                 for k in sorted(self.dataset_cfg['use_keypoints']):
                     selected_index = Part2index[k]
-                    name2keypoints[name].append(all_keypoints[:, selected_index]) # T, N, 3
-                name2keypoints[name] = np.concatenate(name2keypoints[name], axis=1) #T, N, 3
+                    name2keypoints[name].append(all_keypoints[:, selected_index])  # T, N, 3
+    
+                name2keypoints[name] = np.concatenate(name2keypoints[name], axis=1)  # T, N, 3
                 self.keypoints_num = name2keypoints[name].shape[1]
-            
+    
             self.logger.info(f'Total #={self.keypoints_num}') 
-            assert self.keypoints_num == get_keypoints_num(self.dataset_cfg['keypoint_file'], self.dataset_cfg['use_keypoints'])
-        
+            assert self.keypoints_num == get_keypoints_num(
+                self.dataset_cfg['keypoint_file'], 
+                self.dataset_cfg['use_keypoints']
+            )
+    
         else:
             name2keypoints = None
+    
         return name2keypoints
         
     def load_annotations(self, split):
