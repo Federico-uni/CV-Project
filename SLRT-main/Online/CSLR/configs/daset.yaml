@@ -4,6 +4,11 @@ data:
   input_streams:
     - rgb
     - keypoint
+  keypoint_file: ../../data/csl-daily/keypoints_hrnet_dark_coco_wholebody_iso.pkl
+  use_keypoints:
+    - pose
+    - mouth_half
+    - hand
   # Rimosso 'keypoint', perché non hai dati di keypoints
   #zip_file: ../../data/IsolatedLIS/videos.zip   Se lavori con un archivio
   train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.pkl
@@ -62,7 +67,11 @@ model:
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
-    keypoint_s3d: null  # Disattivato perché non hai keypoints
+    keypoint_s3d:
+      in_channel: 0 # placeholder
+      pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
+      use_block: 5
+      freeze_block: 0  # Disattivato perché non hai keypoints
     fuse_method: rgb_only  # Usa solo il flusso video
     lateral:
       pose2rgb: false  # Disattivato perché non hai pose
