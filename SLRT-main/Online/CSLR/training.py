@@ -165,6 +165,7 @@ if __name__ == "__main__":
     print("+================================================================+")
     vocab = dataset.vocab
     cls_num = len(vocab)
+    print("LEN VOCAB: ", len(vocab))
     # make word emb table as tensor
     word_emb_tab = []
     if dataset.word_emb_tab is not None:
