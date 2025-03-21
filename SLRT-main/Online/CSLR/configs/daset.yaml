@@ -4,7 +4,7 @@ data:
   input_streams:
     - rgb
     - keypoint
-  keypoint_file: ../../data/csl-daily/keypoints_hrnet_dark_coco_wholebody_iso.pkl
+  keypoint_file: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
   use_keypoints:
     - pose
     - mouth_half
