@@ -61,7 +61,7 @@ model:
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
-     keypoint_s3d:
+    keypoint_s3d:
       in_channel: 0 # placeholder
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
