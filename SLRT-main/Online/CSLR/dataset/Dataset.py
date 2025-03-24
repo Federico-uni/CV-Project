@@ -59,7 +59,6 @@ class ISLRDataset(torch.utils.data.Dataset):
                 name2all_keypoints = pickle.load(f)
     
             assert 'hrnet' in self.dataset_cfg['keypoint_file']
-            self.logger.info('Keypoints source: hrnet')
             Part2index = Hrnet_Part2index
     
             name2keypoints = {}
@@ -68,9 +67,8 @@ class ISLRDataset(torch.utils.data.Dataset):
                 if isinstance(all_keypoints, dict) and 'keypoints' in all_keypoints:
                     all_keypoints = all_keypoints['keypoints']
     
-                # Cast a numpy array e log della forma
+                # Cast a numpy array
                 all_keypoints = np.array(all_keypoints)
-                self.logger.info(f"Processing keypoints for {name}. Array shape: {all_keypoints.shape}")
                 
                 # Se l'array ha meno di 2 dimensioni, segnala l'errore
                 if all_keypoints.ndim < 2:
@@ -86,25 +84,22 @@ class ISLRDataset(torch.utils.data.Dataset):
                             f"Errore: per la chiave {k} in {name}, l'indice massimo {max(selected_index)} supera la dimensione dell'array {all_keypoints.shape[1]}."
                         )
                     try:
-                        keypoint_slice = all_keypoints[:, selected_index]  # Estrarre la fetta
+                        keypoint_slice = all_keypoints[:, selected_index]
                     except Exception as e:
                         raise RuntimeError(
                             f"Errore durante l'indicizzazione dei keypoints per {name} con la chiave {k} e indici {selected_index}. Forma dell'array: {all_keypoints.shape}. Dettaglio: {e}"
                         )
-                    name2keypoints[name].append(keypoint_slice)  # T, N, 3
+                    name2keypoints[name].append(keypoint_slice)
     
-                # Prova a concatenare tutti i pezzi
                 try:
-                    concatenated = np.concatenate(name2keypoints[name], axis=1)  # T, N, 3
+                    concatenated = np.concatenate(name2keypoints[name], axis=1)
                 except Exception as e:
                     raise RuntimeError(
                         f"Errore durante la concatenazione dei keypoints per {name}: {e}. Array parziali: {[kp.shape for kp in name2keypoints[name]]}"
                     )
                 name2keypoints[name] = concatenated
                 self.keypoints_num = name2keypoints[name].shape[1]
-                self.logger.info(f"Dopo il processing di {name}, forma concatenata: {name2keypoints[name].shape}")
     
-            self.logger.info(f'Total #={self.keypoints_num}')
             assert self.keypoints_num == get_keypoints_num(
                 self.dataset_cfg['keypoint_file'],
                 self.dataset_cfg['use_keypoints']
