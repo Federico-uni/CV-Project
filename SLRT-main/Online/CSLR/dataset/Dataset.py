@@ -298,6 +298,7 @@ class ISLRDataset(torch.utils.data.Dataset):
     
     def __getitem__(self, idx):
         data = self.annotation[idx]
+        print("DATA: ", data)
         return {"name": data}
 
 
