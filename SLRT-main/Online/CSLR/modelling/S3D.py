@@ -37,7 +37,7 @@ class S3Ds(S3D_base):
 
 
 class S3D_backbone(torch.nn.Module):
-    def __init__(self, in_channel=3, use_block=5, freeze_block=0, pretrained_ckpt='../../pretrained_models/s3ds_actioncls_ckpt', 
+    def __init__(self, in_channel=3, use_block=5, freeze_block=0, pretrained_ckpt='../../pretrained_models/S3D_kinetics400.pt', 
                         cfg_pyramid=None, coord_conv=None, use_shortcut=False):
         super(S3D_backbone, self).__init__()
         self.logger = get_logger()
