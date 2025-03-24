@@ -67,7 +67,7 @@ model:
       use_block: 5
       freeze_block: 0
     keypoint_s3d:
-      in_channel: 0 # placeholder
+      in_channel: 0  # placeholder
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
@@ -88,6 +88,7 @@ model:
       pe: true
       word_emb_dim: 300
       temp: 0.1
+      contras_setting: null
       topk: 1115
       split_setting: split_nonblk
     label_smooth: 0.2
