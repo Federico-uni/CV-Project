@@ -54,62 +54,62 @@ class ISLRDataset(torch.utils.data.Dataset):
         self.vfile2framelabel = self.create_framelabel()
 
     def load_keypoints(self):
-    if 'keypoint' in self.input_streams or 'keypoint_coord' in self.input_streams or 'trajectory' in self.input_streams:
-        with open(self.dataset_cfg['keypoint_file'], 'rb') as f:
-            name2all_keypoints = pickle.load(f)
-
-        assert 'hrnet' in self.dataset_cfg['keypoint_file']
-        self.logger.info('Keypoints source: hrnet')
-        Part2index = Hrnet_Part2index
-
-        name2keypoints = {}
-        for name, all_keypoints in name2all_keypoints.items():
-            # Cast a numpy array e log della forma
-            all_keypoints = np.array(all_keypoints)
-            self.logger.info(f"Processing keypoints for {name}. Array shape: {all_keypoints.shape}")
-            
-            # Se l'array ha meno di 2 dimensioni, segnala l'errore
-            if all_keypoints.ndim < 2:
-                raise ValueError(f"Errore: i keypoints per {name} hanno dimensione {all_keypoints.ndim} (atteso almeno 2). Dati: {all_keypoints}")
-            
-            name2keypoints[name] = []
-
-            for k in sorted(self.dataset_cfg['use_keypoints']):
-                selected_index = Part2index[k]
-                # Verifica che gli indici selezionati siano validi per l'array
-                if all_keypoints.shape[1] <= max(selected_index):
-                    raise IndexError(
-                        f"Errore: per la chiave {k} in {name}, l'indice massimo {max(selected_index)} supera la dimensione dell'array {all_keypoints.shape[1]}."
-                    )
+        if 'keypoint' in self.input_streams or 'keypoint_coord' in self.input_streams or 'trajectory' in self.input_streams:
+            with open(self.dataset_cfg['keypoint_file'], 'rb') as f:
+                name2all_keypoints = pickle.load(f)
+    
+            assert 'hrnet' in self.dataset_cfg['keypoint_file']
+            self.logger.info('Keypoints source: hrnet')
+            Part2index = Hrnet_Part2index
+    
+            name2keypoints = {}
+            for name, all_keypoints in name2all_keypoints.items():
+                # Cast a numpy array e log della forma
+                all_keypoints = np.array(all_keypoints)
+                self.logger.info(f"Processing keypoints for {name}. Array shape: {all_keypoints.shape}")
+                
+                # Se l'array ha meno di 2 dimensioni, segnala l'errore
+                if all_keypoints.ndim < 2:
+                    raise ValueError(f"Errore: i keypoints per {name} hanno dimensione {all_keypoints.ndim} (atteso almeno 2). Dati: {all_keypoints}")
+                
+                name2keypoints[name] = []
+    
+                for k in sorted(self.dataset_cfg['use_keypoints']):
+                    selected_index = Part2index[k]
+                    # Verifica che gli indici selezionati siano validi per l'array
+                    if all_keypoints.shape[1] <= max(selected_index):
+                        raise IndexError(
+                            f"Errore: per la chiave {k} in {name}, l'indice massimo {max(selected_index)} supera la dimensione dell'array {all_keypoints.shape[1]}."
+                        )
+                    try:
+                        keypoint_slice = all_keypoints[:, selected_index]  # Estrarre la fetta
+                    except Exception as e:
+                        raise RuntimeError(
+                            f"Errore durante l'indicizzazione dei keypoints per {name} con la chiave {k} e indici {selected_index}. Forma dell'array: {all_keypoints.shape}. Dettaglio: {e}"
+                        )
+                    name2keypoints[name].append(keypoint_slice)  # T, N, 3
+    
+                # Prova a concatenare tutti i pezzi
                 try:
-                    keypoint_slice = all_keypoints[:, selected_index]  # Estrarre la fetta
+                    concatenated = np.concatenate(name2keypoints[name], axis=1)  # T, N, 3
                 except Exception as e:
                     raise RuntimeError(
-                        f"Errore durante l'indicizzazione dei keypoints per {name} con la chiave {k} e indici {selected_index}. Forma dell'array: {all_keypoints.shape}. Dettaglio: {e}"
+                        f"Errore durante la concatenazione dei keypoints per {name}: {e}. Array parziali: {[kp.shape for kp in name2keypoints[name]]}"
                     )
-                name2keypoints[name].append(keypoint_slice)  # T, N, 3
-
-            # Prova a concatenare tutti i pezzi
-            try:
-                concatenated = np.concatenate(name2keypoints[name], axis=1)  # T, N, 3
-            except Exception as e:
-                raise RuntimeError(
-                    f"Errore durante la concatenazione dei keypoints per {name}: {e}. Array parziali: {[kp.shape for kp in name2keypoints[name]]}"
-                )
-            name2keypoints[name] = concatenated
-            self.keypoints_num = name2keypoints[name].shape[1]
-            self.logger.info(f"Dopo il processing di {name}, forma concatenata: {name2keypoints[name].shape}")
-
-        self.logger.info(f'Total #={self.keypoints_num}') 
-        assert self.keypoints_num == get_keypoints_num(
-            self.dataset_cfg['keypoint_file'], 
-            self.dataset_cfg['use_keypoints']
-        )
-
-    else:
-        name2keypoints = None
-
-    return name2keypoints
+                name2keypoints[name] = concatenated
+                self.keypoints_num = name2keypoints[name].shape[1]
+                self.logger.info(f"Dopo il processing di {name}, forma concatenata: {name2keypoints[name].shape}")
+    
+            self.logger.info(f'Total #={self.keypoints_num}') 
+            assert self.keypoints_num == get_keypoints_num(
+                self.dataset_cfg['keypoint_file'], 
+                self.dataset_cfg['use_keypoints']
+            )
+    
+        else:
+            name2keypoints = None
+    
+        return name2keypoints
         
     def load_annotations(self, split):
         print("\n========== DEBUG: load_annotations() ==========")
