@@ -298,7 +298,7 @@ class ISLRDataset(torch.utils.data.Dataset):
     
     def __getitem__(self, idx):
         data = self.annotation[idx]
-        return {"name": f"sample_{idx}", "data": data}]
+        return {"name": data}
 
 
 def build_dataset(dataset_cfg, split, task='ISLR'):
