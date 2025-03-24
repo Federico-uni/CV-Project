@@ -100,6 +100,9 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
             outputs['temp_idx'] = torch.tensor(outputs['temp_idx']).long()
 
         index_setting = data_cfg['transform_cfg'].get('index_setting', ['consecutive','pad','central','pad'])
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print("data_cfg: ", data_cfg)
+         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         sgn_videos, sgn_keypoints, start_idx = load_batch_video(
             zip_file = None, #data_cfg['zip_file'], 
             names = outputs['names'], 
