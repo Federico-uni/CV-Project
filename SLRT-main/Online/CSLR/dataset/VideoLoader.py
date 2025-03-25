@@ -325,7 +325,7 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
         
         print("++NAME: ", name)
         print("++VIDEO_ID: ", video_id)
-        path = zip_file + '@' + video_id
+        path = zip_file + '@' + video_id + ".mp4"
         # Leggi il video dal file zip
         video_byte = ZipReader.read(path)
         # Decodifica i frame selezionati
