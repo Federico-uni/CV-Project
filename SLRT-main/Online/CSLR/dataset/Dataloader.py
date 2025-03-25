@@ -105,8 +105,6 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
         print("=====================================================")
         print(" DATA_CFG: ", data_cfg)
         print("=====================================================")
-        print(" NAME2KEYPOINT: ", name2keypoint)
-        print("=====================================================")
         sgn_videos, sgn_keypoints, start_idx = load_batch_video(
             zip_file = data_cfg['zip_file'], 
             names = outputs['names'], 
