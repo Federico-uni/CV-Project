@@ -299,7 +299,8 @@ class ISLRDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         data = self.annotation[idx]
         print("DATA: ", data)
-        return {"id": data['id'], "label": data['text'], "type": data['type'], "url": data['url'], "category": data['category'], "gloss": data['gloss'], "frame_count": data['frame_count']}
+        video_file = data["id"] + ".mp4"
+        return {"name": data['id'], "text": data['text'], "type": data['type'], "video_file": video_file, "url": data['url'], "category": data['category'], "label": data['gloss'], "seq_len": data['frame_count']}
 
 
 def build_dataset(dataset_cfg, split, task='ISLR'):
