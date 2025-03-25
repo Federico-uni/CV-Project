@@ -312,11 +312,19 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
         else:
             video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
     elif dataset_name.lower() == 'isolatedlis':
+        json_train_path = "SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.json"
+        video_id = ""
+        with open(json_file_path, 'r') as file:
+            data = json.load(file)
+
+        for obj in data:
+            if obj.get("url") == name:
+                print("++Trovato!")
+                video_id = obj.get("id")
+        
         print("++NAME: ", name)
-        # Se il nome non contiene già l'estensione, aggiungila.
-        video_file = name if name.endswith('.mp4') else name + '.mp4'
-        # Costruisci il percorso combinando lo zip e il nome del file
-        path = zip_file + '@' + video_file
+        print("++VIDEO_ID: ", video_id)
+        path = zip_file + '@' + video_id
         # Leggi il video dal file zip
         video_byte = ZipReader.read(path)
         # Decodifica i frame selezionati
