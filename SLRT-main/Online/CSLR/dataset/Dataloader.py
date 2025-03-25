@@ -50,8 +50,10 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
                 idx[np.random.randint(idx.shape[0], size=1)[0]] = 0
             new_batch.extend([item_lst[i] for i in idx])
         batch = new_batch
-
-    outputs = {'names': [sample['name'] for sample in batch],
+    print("=====================================================")
+    print(" BATCH: ", batch)
+    print("=====================================================")               
+    outputs = {'names': [sample['video_file'] for sample in batch],
                 'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
                 'labels': [vocab.index(sample['label']) for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [0 for sample in batch],
                 # 'aug': [sample['aug'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_iso', 'phoenix_comb_iso'] and is_train else [0 for sample in batch],  #if IOU augmented
