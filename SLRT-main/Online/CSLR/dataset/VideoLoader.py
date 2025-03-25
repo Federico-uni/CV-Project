@@ -312,6 +312,7 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
         else:
             video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
     elif dataset_name.lower() == 'isolatedlis':
+        print("++NAME: ", name)
         # Se il nome non contiene già l'estensione, aggiungila.
         video_file = name if name.endswith('.mp4') else name + '.mp4'
         # Costruisci il percorso combinando lo zip e il nome del file
