@@ -10,7 +10,7 @@ data:
     - mouth_half
     - hand
   zip_file: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/videos.zip
-  train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.json
+  train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train2.pkl
   dev: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/val.pkl
   test: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/test.pkl
   vocab_file: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/vocab.json
