@@ -51,7 +51,7 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
             new_batch.extend([item_lst[i] for i in idx])
         batch = new_batch
 
-    outputs = {'names': [sample['video_file'] for sample in batch],
+    outputs = {'names': [sample['name'] for sample in batch],
                 'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
                 'labels': [vocab.index(sample['label']) for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [0 for sample in batch],
                 # 'aug': [sample['aug'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_iso', 'phoenix_comb_iso'] and is_train else [0 for sample in batch],  #if IOU augmented
@@ -100,11 +100,8 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
             outputs['temp_idx'] = torch.tensor(outputs['temp_idx']).long()
 
         index_setting = data_cfg['transform_cfg'].get('index_setting', ['consecutive','pad','central','pad'])
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        print("data_cfg: ", data_cfg)
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         sgn_videos, sgn_keypoints, start_idx = load_batch_video(
-            zip_file = None, #data_cfg['zip_file'], 
+            zip_file = data_cfg['zip_file'], 
             names = outputs['names'], 
             vlens = outputs['vlens'], 
             raw_vlens = outputs['raw_vlens'],  #for sliding window only, it is the length of the raw continuous video
