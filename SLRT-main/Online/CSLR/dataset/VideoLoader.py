@@ -387,13 +387,10 @@ def load_batch_video(zip_file, names, vlens, raw_vlens, dataset_name, is_train,
             batch_videos.append(video) #wo transformed!!
 
             if name2keypoint != None:
-                if dataset_name in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'csl_iso']:
+                if dataset_name in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'csl_iso', 'IsolatedLIS']:
                     kps = name2keypoint[ori_vfile][selected_index,:,:]
                 else:
-                    json_train_path = "SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.json"
-                    video_id = find_video_id_by_url(json_train_path, name)
-                    video_id = video_id + ".mp4"
-                    kps = name2keypoint[video_id][selected_index,:,:]
+                    kps = name2keypoint[name][selected_index,:,:]
                 if pad is not None:
                     kps = pad_array(kps, pad)
 
