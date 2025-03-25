@@ -311,6 +311,15 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
                 video_arrays = read_jpg(zip_file, real_datasetname, selected_index, vlen, ori_vfile)
         else:
             video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
+    elif dataset_name.lower() == 'isolatedlis':
+        # Se il nome non contiene già l'estensione, aggiungila.
+        video_file = name if name.endswith('.mp4') else name + '.mp4'
+        # Costruisci il percorso combinando lo zip e il nome del file
+        path = zip_file + '@' + video_file
+        # Leggi il video dal file zip
+        video_byte = ZipReader.read(path)
+        # Decodifica i frame selezionati
+        video_arrays = _load_frame_nums_to_4darray(video_byte, selected_index)
 
     train_p, train_m, test_p, test_m = index_setting
     if is_train:
