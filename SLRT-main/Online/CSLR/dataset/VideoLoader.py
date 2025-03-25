@@ -311,9 +311,7 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
                 video_arrays = read_jpg(zip_file, real_datasetname, selected_index, vlen, ori_vfile)
         else:
             video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
-    elif dataset_name == 'IsolatedLIS':
-        print("Quaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
+
     train_p, train_m, test_p, test_m = index_setting
     if is_train:
         if train_p == 'temp_scale':
