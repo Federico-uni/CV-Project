@@ -3,7 +3,6 @@ from utils.zipreader import ZipReader
 import io, torch, torchvision
 from PIL import Image
 import lintel, random
-import json
 
 
 def compute_iou(gt_start, gt_end, vlen, center, win_size=16):
@@ -312,14 +311,6 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
                 video_arrays = read_jpg(zip_file, real_datasetname, selected_index, vlen, ori_vfile)
         else:
             video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
-    elif dataset_name.lower() == 'isolatedlis':
-        json_train_path = "SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.json"
-        video_id = find_video_id_by_url(json_train_path, name)
-        path = zip_file + '@' + video_id + ".mp4"
-        # Leggi il video dal file zip
-        video_byte = ZipReader.read(path)
-        # Decodifica i frame selezionati
-        video_arrays = _load_frame_nums_to_4darray(video_byte, selected_index)
 
     train_p, train_m, test_p, test_m = index_setting
     if is_train:
@@ -385,7 +376,7 @@ def load_batch_video(zip_file, names, vlens, raw_vlens, dataset_name, is_train,
                 video = torchvision.transforms.functional.resize(video.permute(0,3,1,2), [256,256]).permute(0,2,3,1)
             video /= 255
             batch_videos.append(video) #wo transformed!!
-
+            
             if name2keypoint != None:
                 if dataset_name in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'csl_iso']:
                     kps = name2keypoint[ori_vfile][selected_index,:,:]
@@ -450,16 +441,7 @@ def load_batch_video(zip_file, names, vlens, raw_vlens, dataset_name, is_train,
     
     return sgn_videos, sgn_keypoints, st
 
-def find_video_id_by_url(json_file_path, video_url):
-    video_id = ""
-    with open(json_file_path, 'r') as file:
-        data = json.load(file)
 
-    for obj in data:
-        if obj.get("url") == video_url:
-            print("++Trovato!")
-            video_id = obj.get("id")
-    return video_id
 # def collate_batch(sgn_videos, sgn_keypoints, frame_num=64):
 #     if type(frame_num) == list:
 #         real_frame_num = random.sample(frame_num, 1)[0]
