@@ -314,7 +314,7 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
     elif dataset_name.lower() == 'isolatedlis':
         json_train_path = "SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.json"
         video_id = ""
-        with open(json_file_path, 'r') as file:
+        with open(json_train_path, 'r') as file:
             data = json.load(file)
 
         for obj in data:
