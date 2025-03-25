@@ -385,7 +385,7 @@ def load_batch_video(zip_file, names, vlens, raw_vlens, dataset_name, is_train,
             batch_videos.append(video) #wo transformed!!
             
             if name2keypoint != None:
-                if dataset_name in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'csl_iso']:
+                if dataset_name in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'csl_iso'] or dataset_name == "IsolatedLIS":
                     kps = name2keypoint[ori_vfile][selected_index,:,:]
                 else:
                     kps = name2keypoint[name][selected_index,:,:]
