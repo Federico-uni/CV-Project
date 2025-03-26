@@ -172,6 +172,12 @@ def main():
     elif cfg['data']['dataset_name'] == 'NMFs-CSL':
         path = osp.join('../../data/NMFs-CSL', 'keypoints_hrnet_dark_coco_wholebody')
         h, w = 512, 512
+    elif cfg['data']['dataset_name'] == 'IsolatedLis':
+    # Per il dataset IsolatedLis, i video sono in un archivio e le annotazioni in 'annotations'.
+    # Qui salveremo i keypoints in una nuova cartella 'keypoints' all'interno della directory IsolatedLis.
+        path = osp.join('SLRT-main/TwoStreamNetwork/data/IsolatedLis', 'keypoints')
+    # Impostiamo l'altezza e la larghezza in base alle specifiche: 240x320 (H x W)
+        h, w = 240, 320
     os.makedirs(path, exist_ok=True)
 
     dataloader, sampler = build_dataloader(cfg, args.split, is_train=False, val_distributed=True)
