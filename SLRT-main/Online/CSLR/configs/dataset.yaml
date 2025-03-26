@@ -3,12 +3,12 @@ data:
   input_data: videos  # Utilizza solo video
   input_streams:
     - rgb
-    - keypoint
-  keypoint_file: /kaggle/input/pretrained-models-andkp2-0/hrnet-csl-daily-keypoints.pkl
-  use_keypoints:
-    - pose
-    - mouth_half
-    - hand
+#    - keypoint
+#  keypoint_file: /kaggle/input/pretrained-models-andkp2-0/hrnet-csl-daily-keypoints.pkl
+#  use_keypoints:
+#    - pose
+#    - mouth_half
+#    - hand
   zip_file: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/videos.zip
   train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train2.pkl
   dev: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/val.pkl
