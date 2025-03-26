@@ -106,7 +106,7 @@ class ISLRDataset(torch.utils.data.Dataset):
             )
         else:
             name2keypoints = None
-    
+        print("KEYPOINTS: ", name2keypoints)
         return name2keypoints
 
         
