@@ -63,12 +63,12 @@ model:
     GlossTokenizer:
       gloss2id_file: /kaggle/input/pretrained-models-andkp2-0/mBart_de_2/mBart_de_2/gloss2ids.pkl
     s3d:
-      pretrained_ckpt: /kaggle/input/HRNET_models/pose_hrnet_w32_384x288.pth
+      pretrained_ckpt: /kaggle/input/hrnet-models/pose_hrnet_w32_384x288.pth
       use_block: 5
       freeze_block: 0
     keypoint_s3d:
       in_channel: 0  # placeholder
-      pretrained_ckpt: /kaggle/input/HRNET_models/pose_hrnet_w32_384x288.pth
+      pretrained_ckpt: /kaggle/input/hrnet-models/pose_hrnet_w32_384x288.pth
       use_block: 5
       freeze_block: 0
     fuse_method: null  # Usa solo il flusso video
