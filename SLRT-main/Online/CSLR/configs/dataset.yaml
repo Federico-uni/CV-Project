@@ -71,7 +71,7 @@ model:
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
-    fuse_method: rgb_only  # Usa solo il flusso video
+    fuse_method: null  # Usa solo il flusso video
     lateral:
       pose2rgb: false  # Disattivato perché non hai pose
       rgb2pose: false
