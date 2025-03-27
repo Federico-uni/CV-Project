@@ -106,26 +106,26 @@ class ISLRDataset(torch.utils.data.Dataset):
             )
         else:
             name2keypoints = None
-        print("KEYPOINTS: ", name2keypoints)
+        #print("KEYPOINTS: ", name2keypoints)
         return name2keypoints
 
         
     def load_annotations(self, split):
-        print("\n========== DEBUG: load_annotations() ==========")
-        print(f"Split richiesto: {split}")
-        print(f"Dataset Config: {self.dataset_cfg}")
+        #print("\n========== DEBUG: load_annotations() ==========")
+        #print(f"Split richiesto: {split}")
+        #print(f"Dataset Config: {self.dataset_cfg}")
         
         # Controlla se lo split esiste nel dataset_cfg
         if split not in self.dataset_cfg:
             raise ValueError(f"Errore: lo split '{split}' non è presente in dataset_cfg! Controlla il file YAML.")
         
         self.annotation_file = self.dataset_cfg[split]
-        print(f"Percorso annotation_file (da YAML): {self.annotation_file}")
+        #print(f"Percorso annotation_file (da YAML): {self.annotation_file}")
         
         # Convertire il percorso in assoluto se necessario
         if not os.path.isabs(self.annotation_file):
             self.annotation_file = os.path.abspath(self.annotation_file)
-        print(f"Percorso assoluto annotation_file: {self.annotation_file}")
+        #print(f"Percorso assoluto annotation_file: {self.annotation_file}")
         
         # Verifica se il file esiste
         if not os.path.exists(self.annotation_file):
@@ -169,9 +169,9 @@ class ISLRDataset(torch.utils.data.Dataset):
         
         elif 'MSASL' in self.dataset_cfg['dataset_name']:
             annotation = [item for item in annotation if item['label'] in self.vocab]
-            print(f"Annotazioni filtrate per MSASL: {len(annotation)}")
+            #print(f"Annotazioni filtrate per MSASL: {len(annotation)}")
         
-        print("================================================\n")
+        #print("================================================\n")
         return annotation
 
     
@@ -182,61 +182,61 @@ class ISLRDataset(torch.utils.data.Dataset):
         return word_emb_tab
     
     def create_vocab(self):
-        print("DEBUG: Avvio di create_vocab. Dataset:", self.dataset_cfg['dataset_name'])
+        #print("DEBUG: Avvio di create_vocab. Dataset:", self.dataset_cfg['dataset_name'])
         
         if 'WLASL' in self.dataset_cfg['dataset_name'] or 'NMFs-CSL' in self.dataset_cfg['dataset_name']:
-            print("DEBUG: Branch WLASL/NMFs-CSL selezionato.")
+            #print("DEBUG: Branch WLASL/NMFs-CSL selezionato.")
             annotation = self.load_annotations('train')
-            print("DEBUG: Annotation caricata, numero totale:", len(annotation))
+            #print("DEBUG: Annotation caricata, numero totale:", len(annotation))
             vocab = []
             for item in annotation:
                 if item['label'] not in vocab:
                     vocab.append(item['label'])
-                    print("DEBUG: Aggiunto label:", item['label'])
+                    #print("DEBUG: Aggiunto label:", item['label'])
             vocab = sorted(vocab)
-            print("DEBUG: Vocabolario ordinato:", vocab)
+            #print("DEBUG: Vocabolario ordinato:", vocab)
         
         elif 'MSASL' in self.dataset_cfg['dataset_name']:
-            print("DEBUG: Branch MSASL selezionato.")
+            #print("DEBUG: Branch MSASL selezionato.")
             msasl_file = os.path.join(self.root, 'MSASL_classes.json')
-            print("DEBUG: Apertura file:", msasl_file)
+            #print("DEBUG: Apertura file:", msasl_file)
             with open(msasl_file, 'rb') as f:
                 all_vocab = json.load(f)
-            print("DEBUG: Caricato all_vocab con", len(all_vocab), "voci")
+            #print("DEBUG: Caricato all_vocab con", len(all_vocab), "voci")
             num = int(self.dataset_cfg['dataset_name'].split('_')[-1])
-            print("DEBUG: Utilizzo delle prime", num, "voci di all_vocab")
+            #print("DEBUG: Utilizzo delle prime", num, "voci di all_vocab")
             vocab = all_vocab[:num]
         
         elif self.dataset_cfg['dataset_name'] in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'phoenix', 'phoenix2014', 'phoenixcomb', 'csl', 'csl_iso', 'IsolatedLIS']:
-            print("DEBUG: Branch phoenix/csl selezionato.")
+            #print("DEBUG: Branch phoenix/csl selezionato.")
             vocab_file = self.dataset_cfg['vocab_file']
-            print("DEBUG: Apertura file vocab:", vocab_file)
+            #print("DEBUG: Apertura file vocab:", vocab_file)
             with open(vocab_file, 'rb') as f:
                 vocab = json.load(f)
-            print("DEBUG: Vocabolario caricato:", vocab)
+            #print("DEBUG: Vocabolario caricato:", vocab)
             if '<blank>' in vocab:
                 if vocab.index('<blank>') != 0:
-                    print("DEBUG: Attenzione: '<blank>' non è all'indice 0!")
+                    #print("DEBUG: Attenzione: '<blank>' non è all'indice 0!")
                 else:
-                    print("DEBUG: '<blank>' è correttamente all'indice 0.")
+                    #print("DEBUG: '<blank>' è correttamente all'indice 0.")
                 assert vocab.index('<blank>') == 0
             
             if 'iso' in self.dataset_cfg['dataset_name']:
-                print("DEBUG: Variante 'iso' rilevata nel nome del dataset.")
+                #print("DEBUG: Variante 'iso' rilevata nel nome del dataset.")
                 if self.dataset_cfg['dataset_name'] == 'phoenix_iso':
                     file_path = '../../data/phoenix_2014t/phoenix14t.{}'.format(self.split)
-                    print("DEBUG: Apertura file gzip:", file_path)
+                    #print("DEBUG: Apertura file gzip:", file_path)
                     with gzip.open(file_path, 'rb') as f:
                         ori_meta = pickle.load(f)
-                    print("DEBUG: Metadati originali caricati, numero totale:", len(ori_meta))
+                    #print("DEBUG: Metadati originali caricati, numero totale:", len(ori_meta))
                     for item in ori_meta:
                         self.vfile2raw_vlens[item['name']] = item['num_frames']
-                        print("DEBUG: Impostato vfile2raw_vlens per", item['name'], "a", item['num_frames'])
+                        #print("DEBUG: Impostato vfile2raw_vlens per", item['name'], "a", item['num_frames'])
         else:
-            print("DEBUG: Nessuna condizione corrisponde al dataset specificato. Vocabolario vuoto.")
+            #print("DEBUG: Nessuna condizione corrisponde al dataset specificato. Vocabolario vuoto.")
             vocab = []
         
-        print("DEBUG: create_vocab restituisce un vocabolario con", len(vocab), "voci.")
+        #print("DEBUG: create_vocab restituisce un vocabolario con", len(vocab), "voci.")
         return vocab
 
     
@@ -298,7 +298,7 @@ class ISLRDataset(torch.utils.data.Dataset):
     
     def __getitem__(self, idx):
         data = self.annotation[idx]
-        print("DATA: ", data)
+        #print("DATA: ", data)
         video_file = data["id"] + ".mp4"
         return {"name": data['id'], "text": data['text'], "type": data['type'], "video_file": video_file, "url": data['url'], "category": data['category'], "label": data['gloss'], "seq_len": data['frame_count']}
 
