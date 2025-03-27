@@ -216,9 +216,9 @@ class ISLRDataset(torch.utils.data.Dataset):
             #print("DEBUG: Vocabolario caricato:", vocab)
             if '<blank>' in vocab:
                 if vocab.index('<blank>') != 0:
-                    #print("DEBUG: Attenzione: '<blank>' non è all'indice 0!")
+                    print("DEBUG: Attenzione: '<blank>' non è all'indice 0!")
                 else:
-                    #print("DEBUG: '<blank>' è correttamente all'indice 0.")
+                    print("DEBUG: '<blank>' è correttamente all'indice 0.")
                 assert vocab.index('<blank>') == 0
             
             if 'iso' in self.dataset_cfg['dataset_name']:
