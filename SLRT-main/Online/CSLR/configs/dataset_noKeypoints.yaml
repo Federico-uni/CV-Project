@@ -39,7 +39,7 @@ training:
   shuffle: True
   num_workers: 8
   batch_size: 4  # Puoi aumentarlo se hai più memoria
-  total_epoch: 1
+  total_epoch: 100
   keep_last_ckpts: 1
   validation: 
     unit: epoch
