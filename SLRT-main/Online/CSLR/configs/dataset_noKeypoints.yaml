@@ -34,7 +34,7 @@ testing:
 
 training:
   overwrite: True
-  model_dir: results/IsolatedLIS_ISLR
+  model_dir: /kaggle/working/IsolatedLIS/results/IsolatedLIS_ISLR
   random_seed: 321
   shuffle: True
   num_workers: 8
