@@ -5,3 +5,5 @@ wandb
 tensorboard
 timm
 transformers
+ctcdecode
+lintel
