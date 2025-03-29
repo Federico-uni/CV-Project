@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import torch
 
 # Costruisci il comando da eseguire
 command = [sys.executable, "-m", "pip", "install", "git+https://github.com/parlance/ctcdecode.git"]
