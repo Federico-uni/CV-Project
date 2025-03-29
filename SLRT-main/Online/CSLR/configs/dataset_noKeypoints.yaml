@@ -9,14 +9,14 @@ data:
 #    - pose
 #    - mouth_half
 #    - hand
-  zip_file: /kaggle/working/IsolatedLIS.zip
+  zip_file: percorso dataset zippato #/kaggle/working/IsolatedLIS.zip
   train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.pkl
   dev: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/val.pkl
   test: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/test.pkl
   vocab_file: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/vocab.json
   dataset_name: IsolatedLIS
   level: word
-  txt_lowercase: true
+  txt_lowercase: true #?
   num_output_frames: 16
   max_sent_length: 400
   transform_cfg:
@@ -34,7 +34,7 @@ testing:
 
 training:
   overwrite: True
-  model_dir: /kaggle/working/IsolatedLIS/results/IsolatedLIS_ISLR
+  model_dir: percorso cartella risultati #/kaggle/working/IsolatedLIS/results/IsolatedLIS_ISLR
   random_seed: 321
   shuffle: True
   num_workers: 8
@@ -61,7 +61,7 @@ training:
 model:
   RecognitionNetwork:
     GlossTokenizer:
-      gloss2id_file: #/kaggle/input/pretrained-models-andkp2-0/mBart_de_2/mBart_de_2/gloss2ids.pkl
+      gloss2id_file: /kaggle/input/pretrained-models-andkp2-0/mBart_de_2/mBart_de_2/gloss2ids.pkl
     s3d:
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
