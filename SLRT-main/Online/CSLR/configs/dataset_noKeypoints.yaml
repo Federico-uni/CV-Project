@@ -61,7 +61,7 @@ training:
 model:
   RecognitionNetwork:
     GlossTokenizer:
-      gloss2id_file: /kaggle/input/pretrained-models-andkp2-0/mBart_de_2/mBart_de_2/gloss2ids.pkl
+      gloss2id_file: #/kaggle/input/pretrained-models-andkp2-0/mBart_de_2/mBart_de_2/gloss2ids.pkl
     s3d:
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
