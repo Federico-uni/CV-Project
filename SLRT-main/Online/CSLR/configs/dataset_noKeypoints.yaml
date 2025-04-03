@@ -9,7 +9,7 @@ data:
 #    - pose
 #    - mouth_half
 #    - hand
-  zip_file: percorso dataset zippato #/kaggle/working/IsolatedLIS.zip
+  zip_file: /ext/LISDataset/IsolatedLIS.zip #/kaggle/working/IsolatedLIS.zip
   train: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/train.pkl
   dev: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/val.pkl
   test: SLRT-main/TwoStreamNetwork/data/IsolatedLIS/annotations/test.pkl
@@ -34,7 +34,7 @@ testing:
 
 training:
   overwrite: True
-  model_dir: percorso cartella risultati #/kaggle/working/IsolatedLIS/results/IsolatedLIS_ISLR
+  model_dir: /ext/home/scavalent/results/prova #/kaggle/working/IsolatedLIS/results/IsolatedLIS_ISLR
   random_seed: 321
   shuffle: True
   num_workers: 8
