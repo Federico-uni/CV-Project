@@ -21,7 +21,7 @@ data:
   max_sent_length: 400
   transform_cfg:
     img_size: 224
-    color_jitter: true
+    color_jitter: false
     center_crop_size: 270
     center_crop: true
     aspect_ratio_min: 0.75
@@ -38,7 +38,7 @@ training:
   random_seed: 321
   shuffle: True
   num_workers: 2
-  batch_size: 1  # Puoi aumentarlo se hai più memoria
+  batch_size: 16  # Puoi aumentarlo se hai più memoria
   total_epoch: 1
   keep_last_ckpts: 1
   validation: 
