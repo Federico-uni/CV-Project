@@ -38,7 +38,7 @@ training:
   random_seed: 321
   shuffle: True
   num_workers: 8
-  batch_size: 4  # Puoi aumentarlo se hai più memoria
+  batch_size: 2  # Puoi aumentarlo se hai più memoria
   total_epoch: 1
   keep_last_ckpts: 1
   validation: 
