@@ -21,7 +21,7 @@ data:
   max_sent_length: 400
   transform_cfg:
     img_size: 224
-    color_jitter: false
+    color_jitter: true
     center_crop_size: 270
     center_crop: true
     aspect_ratio_min: 0.75
@@ -37,7 +37,7 @@ training:
   model_dir: /ext/home/scavalent/results/prova #/kaggle/working/IsolatedLIS/results/IsolatedLIS_ISLR
   random_seed: 321
   shuffle: True
-  num_workers: 8
+  num_workers: 2
   batch_size: 1  # Puoi aumentarlo se hai più memoria
   total_epoch: 1
   keep_last_ckpts: 1
