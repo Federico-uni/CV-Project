@@ -27,6 +27,7 @@ def make_wandb(model_dir, cfg):
         if 'debug' in model_dir or 'comb' in model_dir or 'csl' in model_dir:
             return None
         wandb.login(key='c75b8d0d952a4124e9bed57d011d39662b46a357')
+        cfg["secret_project"] = "CV_Secret"
         run = wandb.init(project='CV_Project', config=cfg, reinit=True)
         wandb.run.name = model_dir.split('/')[-1]
         wandb.run.save()
