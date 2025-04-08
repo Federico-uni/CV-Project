@@ -1,4 +1,5 @@
-import os, numpy as np
+import os
+import numpy as np
 from utils.zipreader import ZipReader
 import io, torch, torchvision
 from PIL import Image
@@ -378,8 +379,8 @@ def load_batch_video(zip_file, names, vlens, raw_vlens, dataset_name, is_train,
         for name, vlen, raw_vlen, ori_vfile in zip(names, vlens, raw_vlens, ori_video_files):
             video, selected_index, pad = load_video(zip_file, name, vlen, raw_vlen, n_frames, dataset_name, is_train, index_setting, temp_scale, ori_vfile)
             # video = torch.tensor(video).to(torch.uint8)
-            video = torch.tensor(video).float()  #T,H,W,C
-            #video = torch.from_numpy(video.astype(np.float32))
+            #video = torch.tensor(video).float()  #T,H,W,C
+            video = torch.from_numpy(video.astype(np.float32))
             if 'NMFs-CSL' in dataset_name:
                 video = torchvision.transforms.functional.resize(video.permute(0,3,1,2), [256,256]).permute(0,2,3,1)
             video /= 255
