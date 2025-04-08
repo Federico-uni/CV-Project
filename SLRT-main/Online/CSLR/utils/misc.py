@@ -26,8 +26,8 @@ def make_wandb(model_dir, cfg):
     if is_main_process():
         if 'debug' in model_dir or 'comb' in model_dir or 'csl' in model_dir:
             return None
-        wandb.login(key='9451b6c734f487665f86afbd6143dc8db0ffda3f')
-        run = wandb.init(project='ISLR_slide', config=cfg, reinit=True)
+        wandb.login(key='c75b8d0d952a4124e9bed57d011d39662b46a357')
+        run = wandb.init(project='CV_Project', config=cfg, reinit=True)
         wandb.run.name = model_dir.split('/')[-1]
         wandb.run.save()
         return run
