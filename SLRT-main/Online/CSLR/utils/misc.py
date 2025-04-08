@@ -26,11 +26,20 @@ def make_wandb(model_dir, cfg):
     if is_main_process():
         if 'debug' in model_dir or 'comb' in model_dir or 'csl' in model_dir:
             return None
-        wandb.login(key='c75b8d0d952a4124e9bed57d011d39662b46a357')
+ 
+        # === Configurazione progetto, team e run ===
         cfg["secret_project"] = "CV_Secret"
-        run = wandb.init(project='CV_Project', config=cfg, reinit=True)
+        run = wandb.init(
+            project="CV_Project",
+            entity="CvProject-team",   # <-- Inserisci il nome del team
+            config=cfg,
+            reinit=True
+        )
+ 
+        # === Dai un nome al run in base al nome della cartella
         wandb.run.name = model_dir.split('/')[-1]
         wandb.run.save()
+ 
         return run
     else:
         return None
