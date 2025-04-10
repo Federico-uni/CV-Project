@@ -298,7 +298,7 @@ class ISLRDataset(torch.utils.data.Dataset):
     
     def __getitem__(self, idx):
         data = self.annotation[idx]
-        if(dataset_cfg['isContinuous']==True):
+        if(self.dataset_cfg['isContinuous']==True):
             print("è TRUE")
         #print("DATA: ", data)
         video_file = data["id"] + ".mp4"
