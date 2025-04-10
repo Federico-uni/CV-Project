@@ -30,7 +30,7 @@ testing:
 training:
   overwrite: True
   model_dir: /ext/home/scavalent/results/continuous_lis
-  pretrained_path: /ext/home/scavalent/results/prova/ckpts/best.ckpt # modello ISLR
+  pretrained_path: /ext/home/scavalent/results/prova/ckpts/best_copia.pt # modello ISLR
   random_seed: 321
   shuffle: True
   num_workers: 8
