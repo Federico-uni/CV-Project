@@ -1,5 +1,5 @@
 task: ISLR
-
+isContinuous: true
 data:
   input_data: videos
   input_streams:
