@@ -1,5 +1,5 @@
 task: ISLR
-isContinuous: true
+
 data:
   input_data: videos
   input_streams:
@@ -21,6 +21,7 @@ data:
     center_crop: true
     aspect_ratio_min: 0.75
     aspect_ratio_max: 1.3
+  isContinuous: true
 
 testing:
   cfg:
