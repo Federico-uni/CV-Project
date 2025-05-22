@@ -5,9 +5,9 @@ data:
   input_streams:
     - rgb
   zip_file: /ext/home/scavalent/ContinuousLis.zip #/ext/LISDataset/ContinuousLis.zip
-  train: /ext/home/scavalent/data_prova/train.pkl #SLRT-main/TwoStreamNetwork/data/ContinuousLIS/annotations/train.pkl
-  dev: /ext/home/scavalent/data_prova/val.pkl #SLRT-main/TwoStreamNetwork/data/ContinuousLIS/annotations/val.pkl
-  test: /ext/home/scavalent/data_prova/test.pkl #SLRT-main/TwoStreamNetwork/data/ContinuousLIS/annotations/test.pkl
+  train: /ext/home/scavalent/data_prova/train.pkl
+  dev: /ext/home/scavalent/data_prova/val.pkl
+  test: /ext/home/scavalent/data_prova/test.pkl
   vocab_file: /ext/home/scavalent/continuous_vocab/continuous_vocab.json
   dataset_name: IsolatedLIS
   level: word
