@@ -1,4 +1,4 @@
-task: ISLR
+task: CSLR
 
 data:
   input_data: videos
@@ -9,7 +9,7 @@ data:
   dev: /ext/home/scavalent/data_prova/val.pkl
   test: /ext/home/scavalent/data_prova/test.pkl
   vocab_file: /ext/home/scavalent/continuous_vocab/continuous_vocab.json
-  dataset_name: IsolatedLIS
+  dataset_name: ContinuousLIS #IsolatedLIS
   level: word
   txt_lowercase: true
   num_output_frames: 64  # più lungo per video continui
