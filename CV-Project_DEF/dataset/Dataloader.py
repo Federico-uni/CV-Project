@@ -50,10 +50,7 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
                 idx[np.random.randint(idx.shape[0], size=1)[0]] = 0
             new_batch.extend([item_lst[i] for i in idx])
         batch = new_batch
-
-    print("+----------------------------------------------------+")
-    print("| SAMPLE : ", batch[0])
-    print("+----------------------------------------------------+")                    
+                   
                     
     outputs = {'names': [sample['name'] for sample in batch],
                 'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
