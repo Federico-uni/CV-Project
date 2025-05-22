@@ -4,7 +4,7 @@ data:
   input_data: videos
   input_streams:
     - rgb
-  zip_file: /ext/LISDataset/ContinuousLis.zip
+  zip_file: /ext/home/scavalent/ContinuousLis.zip #/ext/LISDataset/ContinuousLis.zip
   train: /ext/home/scavalent/data_prova/train.pkl #SLRT-main/TwoStreamNetwork/data/ContinuousLIS/annotations/train.pkl
   dev: /ext/home/scavalent/data_prova/val.pkl #SLRT-main/TwoStreamNetwork/data/ContinuousLIS/annotations/val.pkl
   test: /ext/home/scavalent/data_prova/test.pkl #SLRT-main/TwoStreamNetwork/data/ContinuousLIS/annotations/test.pkl
