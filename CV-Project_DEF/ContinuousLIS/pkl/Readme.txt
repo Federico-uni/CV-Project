@@ -1,1 +1,1 @@
-The pkls and vocab files are on cilab server.
+The vocab file is on cilab server
