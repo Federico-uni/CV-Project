@@ -26,7 +26,7 @@ data:
     center_crop: true
     aspect_ratio_min: 0.75
     aspect_ratio_max: 1.3
-isContinuous: false
+  isContinuous: false
 
 testing:
   cfg:
