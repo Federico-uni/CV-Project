@@ -1,4 +1,4 @@
-task: CSLR
+task: ISLR
 
 data:
   input_data: videos
