@@ -63,12 +63,12 @@ model:
     GlossTokenizer:
       gloss2id_file: /ext/LISDataset/pretrained_models/mBart_de_2/mBart_de_2/gloss2ids.pkl
     s3d:
-      pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
+      pretrained_ckpt: /ext/home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
     keypoint_s3d:
       in_channel: 0  # placeholder
-      pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
+      pretrained_ckpt: /ext/home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
     fuse_method: null  # Usa solo il flusso video
