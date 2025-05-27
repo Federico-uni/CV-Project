@@ -10,10 +10,10 @@ data:
 #    - mouth_half
 #    - hand
   zip_file: /ext/LISDataset/IsolatedLIS.zip #/kaggle/working/IsolatedLIS.zip
-  train: CV-Project_DEF/IsolatedLIS/pkl/train.pkl
-  dev: CV-Project_DEF/IsolatedLIS/pkl/val.pkl
-  test: CV-Project_DEF/IsolatedLIS/pkl/test.pkl
-  vocab_file: CV-Project_DEF/IsolatedLIS/pkl/vocab.json
+  train: IsolatedLIS/pkl/train.pkl
+  dev: IsolatedLIS/pkl/val.pkl
+  test: IsolatedLIS/pkl/test.pkl
+  vocab_file: IsolatedLIS/pkl/vocab.json
   dataset_name: IsolatedLIS
   level: word
   txt_lowercase: true #?
