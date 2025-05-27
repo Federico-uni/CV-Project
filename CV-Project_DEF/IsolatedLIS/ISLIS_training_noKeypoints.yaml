@@ -35,12 +35,12 @@ testing:
 
 training:
   overwrite: True
-  model_dir: /ext/home/scavalent/results/prova #/kaggle/working/IsolatedLIS/results/IsolatedLIS_ISLR
+  model_dir: /ext/home/scavalent/results/Isolated_training
   random_seed: 321
   shuffle: True
   num_workers: 8
   batch_size: 4  # Puoi aumentarlo se hai più memoria
-  total_epoch: 5
+  total_epoch: 100
   keep_last_ckpts: 1
   validation: 
     unit: epoch
