@@ -312,7 +312,7 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
                 video_arrays = read_jpg(zip_file, real_datasetname, selected_index, vlen, ori_vfile)
         else:
             video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
-    elif dataset_name == "IsolatedLIS":
+    elif dataset_name == "IsolatedLIS" or dataset_name == "ContinuousLIS":
         # Assumiamo che ori_vfile (definito dalle annotazioni) contenga il nome del file mp4 (es. "289696.mp4")
         video_file = ori_vfile
         print("++VIDEO_FILE: ", video_file)
@@ -387,7 +387,7 @@ def load_batch_video(zip_file, names, vlens, raw_vlens, dataset_name, is_train,
             batch_videos.append(video) #wo transformed!!
             
             if name2keypoint != None:
-                if dataset_name in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'csl_iso'] or dataset_name == "IsolatedLIS":
+                if dataset_name in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'csl_iso', 'IsolatedLIS', 'ContinuousLIS']:
                     kps = name2keypoint[ori_vfile][selected_index,:,:]
                 else:
                     kps = name2keypoint[name][selected_index,:,:]
