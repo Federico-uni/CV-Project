@@ -207,7 +207,7 @@ class ISLRDataset(torch.utils.data.Dataset):
             #print("DEBUG: Utilizzo delle prime", num, "voci di all_vocab")
             vocab = all_vocab[:num]
         
-        elif self.dataset_cfg['dataset_name'] in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'phoenix', 'phoenix2014', 'phoenixcomb', 'csl', 'csl_iso', 'IsolatedLIS']:
+        elif self.dataset_cfg['dataset_name'] in ['phoenix_iso', 'phoenix2014_iso', 'phoenix_comb_iso', 'phoenix', 'phoenix2014', 'phoenixcomb', 'csl', 'csl_iso', 'IsolatedLIS', 'ContinuousLIS']:
             #print("DEBUG: Branch phoenix/csl selezionato.")
             vocab_file = self.dataset_cfg['vocab_file']
             #print("DEBUG: Apertura file vocab:", vocab_file)
