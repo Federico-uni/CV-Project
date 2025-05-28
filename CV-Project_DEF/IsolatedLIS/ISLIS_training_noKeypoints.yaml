@@ -1,29 +1,24 @@
 task: ISLR
 data:
-  input_data: videos  # Utilizza solo video
+  input_data: videos
   input_streams:
     - rgb
-#    - keypoint
-#  keypoint_file: /kaggle/input/pretrained-models-andkp2-0/hrnet-csl-daily-keypoints.pkl
-#  use_keypoints:
-#    - pose
-#    - mouth_half
-#    - hand
-  zip_file: /ext/LISDataset/IsolatedLIS.zip #/kaggle/working/IsolatedLIS.zip
+  zip_file: /ext/LISDataset/IsolatedLIS.zip
   train: IsolatedLIS/pkl/train.pkl
   dev: IsolatedLIS/pkl/val.pkl
   test: IsolatedLIS/pkl/test.pkl
   vocab_file: IsolatedLIS/pkl/vocab.json
   dataset_name: IsolatedLIS
   level: word
-  txt_lowercase: true #?
+  txt_lowercase: true
   num_output_frames: 16
   max_sent_length: 400
   transform_cfg:
-    img_size: 224
+    img_size: 224         # Resize finale
     color_jitter: true
-    center_crop_size: 270
-    center_crop: true
+    center_crop: false    # Disattivato
+    custom_crop_width: 700
+    custom_crop_height: 550
     aspect_ratio_min: 0.75
     aspect_ratio_max: 1.3
   isContinuous: false
@@ -39,10 +34,10 @@ training:
   random_seed: 321
   shuffle: True
   num_workers: 8
-  batch_size: 4  # Puoi aumentarlo se hai più memoria
+  batch_size: 4
   total_epoch: 100
   keep_last_ckpts: 1
-  validation: 
+  validation:
     unit: epoch
     freq: 1
     cfg:
@@ -68,17 +63,17 @@ model:
       use_block: 5
       freeze_block: 0
     keypoint_s3d:
-      in_channel: 0  # placeholder
+      in_channel: 0
       pretrained_ckpt: /ext/home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
-    fuse_method: null  # Usa solo il flusso video
+    fuse_method: null
     lateral:
-      pose2rgb: false  # Disattivato perché non hai pose
+      pose2rgb: false
       rgb2pose: false
     aux_head:
       head_weight_rgb: 0.2
-      head_weight_keypoint: 0.0  # Disattivato
+      head_weight_keypoint: 0.0
       num: 0
     visual_head:
       variant: sep_conv
