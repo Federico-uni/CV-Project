@@ -30,7 +30,7 @@ testing:
 
 training:
   overwrite: True
-  model_dir: /ext/home/scavalent/results/Isolated_training
+  model_dir: /ext/home/scavalent/results/Isolated_training_1 ##prova, poi togliere _1
   random_seed: 321
   shuffle: True
   num_workers: 8
