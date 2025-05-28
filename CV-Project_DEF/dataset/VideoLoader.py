@@ -315,7 +315,6 @@ def load_video(zip_file, name, vlen, raw_vlen, num_frames, dataset_name, is_trai
     elif dataset_name == "IsolatedLIS" or dataset_name == "ContinuousLIS":
         # Assumiamo che ori_vfile (definito dalle annotazioni) contenga il nome del file mp4 (es. "289696.mp4")
         video_file = ori_vfile
-        print("++VIDEO_FILE: ", video_file)
         path = zip_file + '@' + video_file
         video_byte = ZipReader.read(path)
         video_arrays = _load_frame_nums_to_4darray(video_byte, selected_index)
