@@ -55,7 +55,7 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
     print("+-------------------------------------------------+")
     print("SAMPLE: ", sample_prova)
     print("---------------------------------------------------")
-    print("Label restituita: ", vocab.index(sample['label']))
+    print("Label restituita: ", vocab.index(sample_prova['label']))
     print("+-------------------------------------------------+")
     outputs = {'names': [sample['name'] for sample in batch],
                 'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
