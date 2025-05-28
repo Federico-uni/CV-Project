@@ -9,7 +9,7 @@ data:
   dev: /ext/home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/val.pkl
   test: /ext/home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/test.pkl
   vocab_file: /ext/home/scavalent/continuous_vocab/continuous_vocab copy.json
-  dataset_name: ContinuousLIS #IsolatedLIS
+  dataset_name: IsolatedLIS #ContinuousLIS
   level: word
   txt_lowercase: true
   num_output_frames: 64  # più lungo per video continui
