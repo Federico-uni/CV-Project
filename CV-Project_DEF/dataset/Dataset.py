@@ -297,17 +297,14 @@ class ISLRDataset(torch.utils.data.Dataset):
         return len(self.annotation)
     
     def __getitem__(self, idx):
-        try:
-            data = self.annotation[idx]
-            if(self.dataset_cfg['isContinuous'] and self.dataset_cfg['isContinuous']==True):
-                name = data['name'] + ".mp4"
-                return {"name": name, "text": data['text'], "seq_len": data['length'], "label": data['text'], "video_file": name}
-            else:
-                video_file = data["id"] + ".mp4"
-                return {"name": data['id'], "text": data['text'], "type": data['type'], "video_file": video_file, "url": data['url'], "category": data['category'], "label": data['gloss'], "seq_len": data['frame_count']}
-        except Exception as e:
-            print(f"[WARNING] Errore nel sample {idx}: {e}")
-            return {"name": None, "text": "", "seq_len": 0, "label": "", "video_file": ""}
+        data = self.annotation[idx]
+        if(self.dataset_cfg['isContinuous'] and self.dataset_cfg['isContinuous']==True):
+            name = data['name'] + ".mp4"
+            return {"name": name, "text": data['text'], "seq_len": data['length'], "label": data['text'], "video_file": name}
+        else:
+            video_file = data["id"] + ".mp4"
+            return {"name": data['id'], "text": data['text'], "type": data['type'], "video_file": video_file, "url": data['url'], "category": data['category'], "label": data['gloss'], "seq_len": data['frame_count']}
+
 
 
 def build_dataset(dataset_cfg, split, task='ISLR'):
