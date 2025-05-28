@@ -39,7 +39,7 @@ training:
   pretrained_path: /ext/home/scavalent/results/Isolated_training/Isolated_weights.pt # modello ISLR
   random_seed: 321
   shuffle: True
-  num_workers: 8
+  num_workers: 4
   batch_size: 2  # video lunghi = batch più piccolo
   total_epoch: 100
   keep_last_ckpts: 1
