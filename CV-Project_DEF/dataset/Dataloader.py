@@ -51,14 +51,6 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
             new_batch.extend([item_lst[i] for i in idx])
         batch = new_batch
                    
-    sample_prova = batch[0]
-    print("+-------------------------------------------------+")
-    print("VOCAB: ", vocab)
-    print("---------------------------------------------------")
-    print("SAMPLE: ", sample_prova)
-    print("---------------------------------------------------")
-    print("Label restituita: ", vocab.index(sample_prova['label']))
-    print("+-------------------------------------------------+")
     outputs = {'names': [sample['name'] for sample in batch],
                 'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
                 'labels': [vocab.index(sample['label']) for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [0 for sample in batch],
