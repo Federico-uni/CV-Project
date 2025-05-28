@@ -22,8 +22,10 @@ data:
   transform_cfg:
     img_size: 224
     color_jitter: true
-    center_crop_size: 224 #MODIFICATO
+    center_crop_size: 224 #disattivato
     center_crop: false
+    custom_crop_width: 700 #per prendere solo la parte sinistra
+    custom_crop_height: 700 #altezza
     aspect_ratio_min: 0.75
     aspect_ratio_max: 1.3
   isContinuous: true
