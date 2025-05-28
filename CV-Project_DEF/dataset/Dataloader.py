@@ -53,6 +53,8 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
                    
     sample_prova = batch[0]
     print("+-------------------------------------------------+")
+    print("VOCAB: ", vocab)
+    print("---------------------------------------------------")
     print("SAMPLE: ", sample_prova)
     print("---------------------------------------------------")
     print("Label restituita: ", vocab.index(sample_prova['label']))
