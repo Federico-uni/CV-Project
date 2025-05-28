@@ -300,9 +300,6 @@ class ISLRDataset(torch.utils.data.Dataset):
         data = self.annotation[idx]
         if(self.dataset_cfg['isContinuous'] and self.dataset_cfg['isContinuous']==True):
             name = data['name'] + ".mp4"
-            print("++\\OUTPUT GETITEM//++")
-            print("| ", {"name": name, "text": data['text'], "seq_len": data['length'], "label": data['text'], "video_file": name})
-            print("|---------------------------------------------------------------------------")
             return {"name": name, "text": data['text'], "seq_len": data['length'], "label": data['text'], "video_file": name}
         else:
             video_file = data["id"] + ".mp4"
