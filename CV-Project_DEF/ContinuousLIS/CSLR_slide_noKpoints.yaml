@@ -36,7 +36,7 @@ testing:
 training:
   overwrite: True
   model_dir: /ext/home/scavalent/results/Continuous_training/freeze_3_block
-  pretrained_path: /ext/home/scavalent/results/Isolated_training/ckpts/best.ckpt # modello ISLR
+  pretrained_path: /ext/home/scavalent/results/Isolated_training/Isolated_weights.pt # modello ISLR
   random_seed: 321
   shuffle: True
   num_workers: 8
@@ -65,7 +65,7 @@ model:
     GlossTokenizer:
       gloss2id_file: /ext/home/scavalent/pretrained_models/mBart_de_2/mBart_de_2/gloss2ids.pkl
     s3d:
-      pretrained_ckpt: /ext/home/scavalent/results/Isolated_training/ckpts/best.ckpt  # riusa feature extractor
+      pretrained_ckpt: /ext/home/scavalent/results/Isolated_training/Isolated_weights.pt  # riusa feature extractor
       use_block: 5
       freeze_block: 3 #cambiato
     keypoint_s3d:
