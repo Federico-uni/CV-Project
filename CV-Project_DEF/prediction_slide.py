@@ -289,7 +289,7 @@ def evaluation_slide(model, cslr_dataloader, cfg,
                 
                 print("DEBUG: batch['gls_ref'] =", batch.get('gls_ref'))
                 print("DEBUG: batch.keys() =", batch.keys())
-                gls_ref = batch['gls_ref'][0]
+                gls_ref = batch['labels'][0]#gls_ref = batch['gls_ref'][0]
 
                 results[name]['gls_ref'] = gls_ref
                 
