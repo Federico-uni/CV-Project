@@ -286,7 +286,9 @@ def evaluation_slide(model, cslr_dataloader, cfg,
                     final_gls_logits = torch.cat(all_gls_logits, dim=0)
                 # print('2nd ', final_decode_op.shape)
                 logits_dict[name] = final_gls_logits.detach().cpu().numpy()
-
+                
+                print("DEBUG: batch['gls_ref'] =", batch.get('gls_ref'))
+                print("DEBUG: batch.keys() =", batch.keys())
                 gls_ref = batch['gls_ref'][0]
 
                 results[name]['gls_ref'] = gls_ref
