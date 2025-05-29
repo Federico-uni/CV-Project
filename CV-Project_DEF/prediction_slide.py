@@ -100,9 +100,11 @@ def sliding_windows(video, keypoint, win_size=16, stride=1, save_fea=False):
 
     # Aggiunto
     if keypoint is None:
-        keypoint = torch.zeros((1, video.shape[1], 1, 3)).to(video.device)
+        T = video.shape[0]
+        keypoint = torch.zeros((T, 1, 3)).to(video.device)
     else:
         keypoint = keypoint.squeeze(0)
+
 
 
     num_clips = math.ceil(T/stride)
