@@ -254,7 +254,7 @@ def evaluation_slide(model, cslr_dataloader, cfg,
                         sgn_keypoints = [k_s]
                     forward_output = model(is_train=False, labels=batch['labels'], sgn_videos=sgn_videos, sgn_keypoints=sgn_keypoints, epoch=epoch)
 
-                    print("FORWARD OUTPUT KEYS:", forward_output.keys())  
+                    #print("FORWARD OUTPUT KEYS:", forward_output.keys())  
                     #rgb/keypoint/fuse/ensemble_last_logits
                     """if pred_src == 'ensemble':
                         gls_logits = forward_output['ensemble_last_gloss_logits']
@@ -287,8 +287,8 @@ def evaluation_slide(model, cslr_dataloader, cfg,
                 # print('2nd ', final_decode_op.shape)
                 logits_dict[name] = final_gls_logits.detach().cpu().numpy()
                 
-                print("DEBUG: batch['gls_ref'] =", batch.get('gls_ref'))
-                print("DEBUG: batch.keys() =", batch.keys())
+                #print("DEBUG: batch['gls_ref'] =", batch.get('gls_ref'))
+                #print("DEBUG: batch.keys() =", batch.keys())
                 gls_ref = batch['labels'][0]#gls_ref = batch['gls_ref'][0]
 
                 results[name]['gls_ref'] = gls_ref
