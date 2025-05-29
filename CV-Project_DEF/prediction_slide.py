@@ -256,14 +256,11 @@ def evaluation_slide(model, cslr_dataloader, cfg,
 
                     print("FORWARD OUTPUT KEYS:", forward_output.keys())  
                     #rgb/keypoint/fuse/ensemble_last_logits
-                    if pred_src == 'ensemble':
+                    """if pred_src == 'ensemble':
                         gls_logits = forward_output['ensemble_last_gloss_logits']
                     elif pred_src == 'fuse':
-                        gls_logits = forward_output['fuse_gloss_logits']
-                    elif 'gloss_logits' in forward_output:
-                        gls_logits = forward_output['gloss_logits']
-                    else:
-                        raise ValueError(f"Non trovo gloss_logits nelle chiavi dell'output del modello: {list(forward_output.keys())}")
+                        gls_logits = forward_output['fuse_gloss_logits']"""
+                    gls_logits = forward_output['gloss_logits']
                     
                     # if mask_entry is not None:
                     #     gls_logits[:, mask_entry] = -99999
