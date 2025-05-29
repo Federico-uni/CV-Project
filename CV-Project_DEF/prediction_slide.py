@@ -249,8 +249,11 @@ def evaluation_slide(model, cslr_dataloader, cfg,
                         sgn_videos.append(sgn_videos[-1][:, win_size//4:win_size//4+win_size//2, ...].contiguous())
                         sgn_keypoints = [k_s]
                         sgn_keypoints.append(sgn_keypoints[-1][:, win_size//4:win_size//4+win_size//2, ...].contiguous())
-
+                    else: # Aggiunto
+                        sgn_videos = [v_s]
+                        sgn_keypoints = [k_s]
                     forward_output = model(is_train=False, labels=batch['labels'], sgn_videos=sgn_videos, sgn_keypoints=sgn_keypoints, epoch=epoch)
+
                     
                     #rgb/keypoint/fuse/ensemble_last_logits
                     if pred_src == 'ensemble':
