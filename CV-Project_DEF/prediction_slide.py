@@ -507,11 +507,11 @@ def evaluation_slide(model, cslr_dataloader, cfg,
                 
                 
                 gls_ref = [tensor_to_gloss_str(r, vocab) for r in gls_ref]
-                for ref in gls_ref:
-                    if isinstance(ref, torch.Tensor):
-                        ref = ref.tolist()
-                    print([vocab[i] for i in ref])
-                
+                #for ref in gls_ref:
+                #    if isinstance(ref, torch.Tensor):
+                #        ref = ref.tolist()
+                #    print([vocab[i] for i in ref])
+                print([vocab[i] for i in gls_ref])
                 gls_hyp = [tensor_to_gloss_str(h, vocab) for h in gls_hyp]
 
 #                print("+---------------------------------------------+")
