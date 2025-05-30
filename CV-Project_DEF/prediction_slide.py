@@ -501,15 +501,24 @@ def evaluation_slide(model, cslr_dataloader, cfg,
                     # fallback
                     return str(ref)
                 
+
+                
                 # Subito prima di chiamare wer_list:
+                
+                
                 gls_ref = [tensor_to_gloss_str(r, vocab) for r in gls_ref]
+                for ref in gls_ref:
+                    if isinstance(ref, torch.Tensor):
+                        ref = ref.tolist()
+                    print([vocab[i] for i in ref])
+                
                 gls_hyp = [tensor_to_gloss_str(h, vocab) for h in gls_hyp]
 
-                print("+---------------------------------------------+")
-                print("GLS_REF: ", gls_ref)
-                print("-----------------------------------------------")
-                print("GLS_HYP: ", gls_hyp)
-                print("+---------------------------------------------+")
+#                print("+---------------------------------------------+")
+#                print("GLS_REF: ", gls_ref)
+ #               print("-----------------------------------------------")
+ #               print("GLS_HYP: ", gls_hyp)
+ #               print("+---------------------------------------------+")
                 
                 wer_results = wer_list(references=gls_ref, hypotheses=gls_hyp)
                 logger.info('Decoding method: {}, WER: {:.2f}, DEL: {:.2f}, INS: {:.2f}, SUB: {:.2f}'\
