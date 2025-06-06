@@ -70,7 +70,7 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
                 }
 
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    print("LABELS: ", output['labels'])
+    print("LABELS: ", outputs['labels'])
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")    
     
     if task == 'ISLR':
