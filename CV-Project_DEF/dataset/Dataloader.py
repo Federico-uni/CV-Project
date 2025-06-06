@@ -68,6 +68,10 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
                 'sgn_keypoints': None,
                 'start_idx': None
                 }
+
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("LABELS: ", output['labels'])
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")    
     
     if task == 'ISLR':
         num_output_frames = data_cfg['num_output_frames']
