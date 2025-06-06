@@ -12,7 +12,7 @@ dataset2gloss2id_file = {
     'csl': '../../data/csl-daily/gloss2ids.pkl',
     'phoenix': '../../data/phoenix_2014t/gloss2ids.pkl',
     'phoenix2014': '../../data/phoenix2014/gloss2ids.pkl',
-    'ISLR': 'CV-Project_DEF/resources/gloss2ids.pkl'
+    #'ISLR': 'CV-Project_DEF/resources/gloss2ids.pkl'
 }
 dataset2data_file = {
     'csl': '../../data/csl-daily/csl.{}',
