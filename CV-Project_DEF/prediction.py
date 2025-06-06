@@ -243,12 +243,7 @@ def evaluation(model, val_dataloader, cfg,
                         hyp = [d.item() for d in decode_output[i]]
                         results[name][f'{logits_name}hyp'] = hyp
 
-                    gloss_pred = [vocab[d] for d in hyp]
-                    gloss_true = vocab[ref]
-                    print(f"Sample: {name}")
-                    print("Pred (top-k):", gloss_pred)
-                    print("True label:", gloss_true)
-                    print("-"*50)
+
 
                     if (contras_setting is None or 'only' not in contras_setting) and return_prob and \
                         (contras_setting is not None and ('dual' not in contras_setting or 'word_fused' not in logits_name)):
@@ -257,6 +252,14 @@ def evaluation(model, val_dataloader, cfg,
 
                     ref = batch['labels'][i].item()
                     results[name]['ref'] = ref
+
+
+                    gloss_pred = [vocab[d] for d in hyp]
+                    gloss_true = vocab[ref]
+                    print(f"Sample: {name}")
+                    print("Pred (top-k):", gloss_pred)
+                    print("True label:", gloss_true)
+                    print("-"*50)    
 
                     if contras_setting is not None and 'contras' in contras_setting and 'ensemble' not in logits_name and \
                         'word_fused' not in logits_name and forward_output[f'{logits_name}word_emb_att_scores'] is not None:
