@@ -25,6 +25,9 @@ def shift_tokens_right(input_ids: torch.Tensor, pad_token_id: int, ignore_index:
 class BaseTokenizer(object):
     def __init__(self, tokenizer_cfg):
         self.tokenizer_cfg = tokenizer_cfg
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print(" Base tokenizer: ", tokenizer_cfg)
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     def __call__(self, input_str):
         pass
 
