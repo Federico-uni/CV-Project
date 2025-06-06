@@ -66,7 +66,11 @@ To launch the training process, follow these steps:
    ```
 
 2. **Run the training script:**
-Training on Continuous Videos
+   Training on Isolated Videos
+   ```bash
+   torchrun --nproc_per_node=1 training.py --config IsolatedLIS/ISLIS_training_noKeypoints.yaml
+   ```
+   Training on Continuous Videos
    ```bash
    torchrun --nproc_per_node=1 training.py --config ContinuousLIS/CSLR_slide_noKpoints.yaml
    ```
