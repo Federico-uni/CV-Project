@@ -62,7 +62,7 @@ training:
 model:
   RecognitionNetwork:
     GlossTokenizer:
-      gloss2id_file: CV-Project_DEF/resources/gloss2idsACASO.pkl
+      gloss2id_file: CV-Project_DEF/resources/gloss2ids.pkl
     s3d:
       pretrained_ckpt: /ext/home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
