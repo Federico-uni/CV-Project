@@ -72,7 +72,7 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     for sample in batch:
         print("LABEL: ",sample['label'], " - ID: ", vocab.index(sample['label']))
-        print("DEODED INDEX: ", vocab[index(sample['label'])])
+        print("DEODED INDEX: ", vocab[vocab.index(sample['label'])])
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")    
     
     if task == 'ISLR':
