@@ -254,13 +254,6 @@ def evaluation(model, val_dataloader, cfg,
                     results[name]['ref'] = ref
 
 
-                    gloss_pred = [vocab[d] for d in hyp]
-                    gloss_true = vocab[ref]
-                    print(f"Sample: {name}")
-                    print("Pred (top-k):", gloss_pred)
-                    print("True label:", gloss_true)
-                    print("-"*50)    
-
                     if contras_setting is not None and 'contras' in contras_setting and 'ensemble' not in logits_name and \
                         'word_fused' not in logits_name and forward_output[f'{logits_name}word_emb_att_scores'] is not None:
                         s = forward_output[f'{logits_name}word_emb_att_scores']
