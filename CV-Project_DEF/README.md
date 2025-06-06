@@ -1,36 +1,77 @@
-# Online CSLR Framework
-Code for our proposed online continuous sign language recognition framework
+# LIS
 
+## Clone the Repository
 
-## Data Preparation
-For datasets and keypoint inputs, please check [../README.md](../README.md).
+To download this project from GitHub, run:
 
-### Segment Isolated Signs
-We use a pre-trained CSLR model, TwoStream-SLR, to segment continuous sign videos into a set of isolated sign clips.
-The pre-trained model checkpoints can be downloaded [here](https://github.com/FangyunWei/SLRT/blob/main/TwoStreamNetwork/docs/TwoStream-SLR.md)
-After downloading, put them into the folder ``../CTC_fusion/results``
-Then run
-```
-python gen_segment.py
+```bash
+git clone https://github.com/Federico-uni/CV-Project.git
+cd CV-Project/CV-Project_DEF
 ```
 
-### Sign Augmentation
-Since the segmented signs are pseudo ground-truths and their boundaries may not be accurate, we further augment these segmented signs by running
-```
-python sign_augment.py
-```
-We provide processed meta data for [Phoenix-2014T](https://hkustconnect-my.sharepoint.com/:f:/g/personal/rzuo_connect_ust_hk/EtgOb0-NAWBHssQdx4zKj_IB7IA4mGk4Wuz5nRx0D8h5Bg?e=GqJYSp) and [CSL-Daily](https://hkustconnect-my.sharepoint.com/:f:/g/personal/rzuo_connect_ust_hk/Eu-Q1K-DlW1ChO2JjNBWXKsBN3otZ88z_RKXN9hEr5g9iA?e=uS6gbq).
+## Environment Setup
 
-## Training
-```
-config_file='configs/phoenix-2014t_ISLR.yaml'
-python -m torch.distributed.launch --nproc_per_node 8 --master_port 29999 --use_env training.py --config=${config_file} 
-```
-We provide model checkpoints for [Phoenix-2014T](https://hkustconnect-my.sharepoint.com/:f:/g/personal/rzuo_connect_ust_hk/EidJXFxpyaNPho5SKtVHEJ8BHex8Gq62koL-RrNnqtF1PA?e=IGGpxU) and [CSL-Daily](https://hkustconnect-my.sharepoint.com/:f:/g/personal/rzuo_connect_ust_hk/EhS5B3p9i3FNu5OpqFy3WyABkMMGg1VbAzMJrxjuFVOg6Q?e=c7OK0Z).
+To set up the virtual environment with all required dependencies:
 
-## Testing (online inference)
-```
-config_file='configs/slide_phoenix-2014t.yaml'
-python -m torch.distributed.launch --nproc_per_node 1 --master_port 29999 --use_env prediction_slide.py --config=${config_file}  --save_fea 1
-```
-The flag "--save_fea" is optional, which aims to extract features for boosting an offline model with the well-optimized online model.
+1. **Create and activate the environment using `conda`:**
+   ```bash
+   conda env create -f environment.yaml
+   conda activate <env_name>  # Replace <env_name> with the actual environment name in the YAML
+   ```
+2. **Export intern libraries**
+   ```bash
+   export LD_PRELOAD=/ext/home/scavalent/miniconda3/envs/cv_env/x86_64-conda-linux-gnu/lib/libstdc++.so.6
+   ```
+
+3. **Build `ctcdecode`:**
+   ```bash
+   bash rebuild_ctcdecode.sh
+   ```
+
+4. **Install FFmpeg and Lintel:**
+   ```bash
+   bash install_ffmpeg_and_lintel.sh
+   ```
+
+5. **Build and install the custom C extension:**
+   ```bash
+   python setup.py install
+   ```
+
+###  Note
+
+The scripts and files mentioned above can be found in the `<Virtual Environment Setup>` directory within this project.
+---
+
+## Dataset and Model Links
+
+Please download the required datasets and pretrained models from the following links:
+
+- **Dataset:**
+  - [Download Continuous Data](https://unibari-my.sharepoint.com/:u:/g/personal/f_valentino7_studenti_uniba_it/EVF35QQHTTtJpklrk30VJrMBFD8dWWOBHAtN8UpubLrimw?e=OfMxAT)
+
+- **Pretrained Models:**
+  - [Isolated_training](https://unibari-my.sharepoint.com/:u:/g/personal/b_scavo_studenti_uniba_it/EWXvFzF5VltDo_JrtOhk4hIBPPczupz8huf2ItI6odeRyg?e=yLMnZG)
+  - [MBart_pt](https://unibari-my.sharepoint.com/:u:/g/personal/b_scavo_studenti_uniba_it/EVJGswSwIMdCt8vxXVhOImkB78IVXrwBXQhJMynYJTZfew?e=EYo5Xc)
+
+---
+
+## Training Instructions
+
+To launch the training process, follow these steps:
+
+1. **Activate the environment:**
+   ```bash
+   conda activate <env_name>
+   ```
+
+2. **Run the training script:**
+Training on Continuous Videos
+   ```bash
+   torchrun --nproc_per_node=1 training.py --config ContinuousLIS/CSLR_slide_noKpoints.yaml
+   ```
+
+
+> Make sure to adapt the paths and arguments based on your actual script layout and options.
+
+---
