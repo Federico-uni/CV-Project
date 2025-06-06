@@ -172,7 +172,9 @@ class BaseGlossTokenizer(BaseTokenizer):
     def __init__(self, tokenizer_cfg):
         super().__init__(tokenizer_cfg)
         with open(tokenizer_cfg['gloss2id_file'],'rb') as f:
+            print("+++++++++++++++++++++++++++++++++++++++++++++++++")
             print("PATH: ", tokenizer_cfg['gloss2id_file'])
+            print("+++++++++++++++++++++++++++++++++++++++++++++++++")
             self.gloss2id = pickle.load(f) #
         self.gloss2id = defaultdict(lambda: self.gloss2id['<unk>'], self.gloss2id)
         # print(self.gloss2id)
