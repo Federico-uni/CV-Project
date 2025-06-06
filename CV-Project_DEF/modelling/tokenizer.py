@@ -203,7 +203,9 @@ class GlossTokenizer_G2T(BaseGlossTokenizer):
     def __init__(self, tokenizer_cfg):
         super().__init__(tokenizer_cfg)
         self.src_lang = tokenizer_cfg['src_lang']
-
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print(" GlossTokenizer_G2T: ", tokenizer_cfg)
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
     def __call__(self, batch_gls_seq):
         #batch
         max_length = max([len(gls_seq.split()) for gls_seq in batch_gls_seq])+2 #include </s> <lang>
@@ -231,7 +233,9 @@ class GlossTokenizer_G2G(BaseGlossTokenizer):
         self.pad_index, self.eos_index, self.mask_index = \
             self.gloss2id['<pad>'], self.gloss2id['</s>'], self.gloss2id['<mask>']
         self.special_tokens = ['<s>', '<pad>', '</s>', '<unk>', '<mask>', 'zh_CN', 'de_DE', 'zh_CSL', 'de_DGS']
-
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print(" GlossTokenizer_G2G: ", tokenizer_cfg)
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
     def __call__(self, input_gls_seq=[], label_gls_seq=[], blank_as_mask=True, need_input=True, need_label=True):
         outputs = {}
         if need_input:
