@@ -69,11 +69,11 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
                 'start_idx': None
                 }
 
-    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    for sample in batch:
-        print("LABEL: ",sample['label'], " - ID: ", vocab.index(sample['label']))
-        print("DEODED INDEX: ", vocab[vocab.index(sample['label'])])
-    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")    
+    #print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    #for sample in batch:
+    #    print("LABEL: ",sample['label'], " - ID: ", vocab.index(sample['label']))
+    #    print("DEODED INDEX: ", vocab[vocab.index(sample['label'])])
+    #print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")    
     
     if task == 'ISLR':
         num_output_frames = data_cfg['num_output_frames']
