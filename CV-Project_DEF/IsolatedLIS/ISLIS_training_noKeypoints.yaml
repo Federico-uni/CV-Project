@@ -9,7 +9,7 @@ data:
 #    - pose
 #    - mouth_half
 #    - hand
-  zip_file: /ext/LISDataset/IsolatedLIS.zip #/kaggle/working/IsolatedLIS.zip
+  zip_file: /home/scavalent/IsolatedLIS.zip
   train: IsolatedLIS/pkl/train.pkl
   dev: IsolatedLIS/pkl/val.pkl
   test: IsolatedLIS/pkl/test.pkl
