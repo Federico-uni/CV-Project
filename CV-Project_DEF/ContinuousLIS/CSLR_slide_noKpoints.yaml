@@ -4,11 +4,11 @@ data:
   input_data: videos
   input_streams:
     - rgb
-  zip_file: /ext/home/scavalent/ContinuousLis.zip #/ext/LISDataset/ContinuousLis.zip
-  train: /ext/home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/train.pkl
-  dev: /ext/home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/val.pkl
-  test: /ext/home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/test.pkl
-  vocab_file: /ext/home/scavalent/continuous_vocab/continuous_vocab.json
+  zip_file: /home/scavalent/ContinuousLis.zip
+  train: /home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/train.pkl
+  dev: /home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/val.pkl
+  test: /home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/test.pkl
+  vocab_file: /home/scavalent/continuous_vocab/continuous_vocab.json
   dataset_name: ContinuousLIS
   level: word
   txt_lowercase: true
@@ -37,8 +37,8 @@ testing:
 
 training:
   overwrite: True
-  model_dir: /ext/home/scavalent/results/Continuous_training/freeze_3_block
-  pretrained_path: /ext/home/scavalent/results/Isolated_training/Isolated_weights.pt # modello ISLR
+  model_dir: /home/scavalent/results/Continuous_training/freeze_3_block
+  pretrained_path: /home/scavalent/results/Isolated_training/Isolated_weights.pt # modello ISLR
   random_seed: 321
   shuffle: True
   num_workers: 4
@@ -65,7 +65,7 @@ training:
 model:
   RecognitionNetwork:
     GlossTokenizer:
-      gloss2id_file: /ext/LISDataset/pretrained_models/mBart_de_2/mBart_de_2/gloss2ids.pkl
+      gloss2id_file: /ext/LISDataset/pretrained_models/mBart_de_2/mBart_de_2/gloss2ids.pkl #Non viene usato
     s3d:
       pretrained_ckpt: /ext/home/scavalent/results/Isolated_training/Isolated_weights.pt  # riusa feature extractor
       use_block: 5
