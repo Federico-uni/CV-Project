@@ -35,7 +35,7 @@ testing:
 
 training:
   overwrite: True
-  model_dir: /ext/home/scavalent/results/Isolated_training
+  model_dir: /home/scavalent/results/Isolated_training
   random_seed: 321
   shuffle: True
   num_workers: 8
@@ -64,12 +64,12 @@ model:
     GlossTokenizer:
       gloss2id_file: CV-Project_DEF/resources/gloss2ids.pkl
     s3d:
-      pretrained_ckpt: /ext/home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
+      pretrained_ckpt: /home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
     keypoint_s3d:
       in_channel: 0  # placeholder
-      pretrained_ckpt: /ext/home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
+      pretrained_ckpt: /home/scavalent/CV-Project/SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
       use_block: 5
       freeze_block: 0
     fuse_method: null  # Usa solo il flusso video
