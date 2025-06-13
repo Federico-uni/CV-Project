@@ -24,3 +24,6 @@ dependencies = [
     "wandb>=0.19.11",
     "wheel>=0.45.1",
 ]
+
+[tool.uv]
+no-build-isolation-package = ["ctcdecode", "mmcv"]
