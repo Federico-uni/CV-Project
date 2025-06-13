@@ -40,6 +40,12 @@ from collections import defaultdict
 from copy import deepcopy
 
 
+# Numero di dispositivo “logico” usato da PyTorch
+print("Current CUDA device index:", torch.cuda.current_device())
+# Nome della GPU associata a quel device
+print("CUDA device name:", torch.cuda.get_device_name(torch.cuda.current_device()))
+
+
 def save_model(model, optimizer, scheduler, output_file, epoch=None, global_step=None, current_score=None):
     base_dir = os.path.dirname(output_file)
     os.makedirs(base_dir, exist_ok=True)
