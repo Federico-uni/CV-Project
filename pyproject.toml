@@ -27,8 +27,6 @@ dependencies = [
 ]
 
 [tool.uv]
-# Usa l’interprete giusto
-python = "/home/scavalent/miniconda3/envs/cv_pj/bin/python"
 # Disabilita il build isolation solo per ctcdecode
 no-build-isolation-package = ["ctcdecode"]
 
