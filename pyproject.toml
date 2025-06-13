@@ -27,6 +27,10 @@ dependencies = [
     "wheel>=0.45.1",
 ]
 
+[tool.uv]
+# Forza UV a usare il Python dell'env cv_pj (cp310)
+python = "/home/scavalent/miniconda3/envs/cv_pj/bin/python"
+
 [tool.uv.sources]
 # Using local vendored ctcdecode
 # ctcdecode = { git = "https://github.com/WayenVan/ctcdecode.git" }
