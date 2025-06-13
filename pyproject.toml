@@ -12,7 +12,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "../ctcdecode",
+    "ctcdecode @ file:///home/scavalent/ctcdecode",
     "lintel>=0.1.0",
     "mmcv==1.7.1",
     "numpy==1.26",
