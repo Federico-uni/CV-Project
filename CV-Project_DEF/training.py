@@ -50,8 +50,7 @@ for i in range(torch.cuda.device_count()):
 
 # Quale GPU fisica stai esponendo
 print("CUDA_VISIBLE_DEVICES         →", os.environ.get("CUDA_VISIBLE_DEVICES"))
-
-input('Type ok: ')
+#input('Type ok: ')
 
 
 def save_model(model, optimizer, scheduler, output_file, epoch=None, global_step=None, current_score=None):
