@@ -13,11 +13,11 @@ data:
   level: word
   txt_lowercase: true
   num_output_frames: 64  # più lungo per video continui
-  win_size: 16      #AGGIUNTO
-  stride: 1         #AGGIUNTO
-  split_size: 36    #AGGIUNTO
-  prob_thr:         #AGGIUNTO
-    - -1            #AGGIUNTO
+  #win_size: 16      #AGGIUNTO
+  #stride: 1         #AGGIUNTO
+  #split_size: 36    #AGGIUNTO
+  #prob_thr:         #AGGIUNTO
+  #  - -1            #AGGIUNTO
   max_sent_length: 400
   transform_cfg:
     img_size: 224
