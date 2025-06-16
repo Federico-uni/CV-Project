@@ -21,7 +21,7 @@ data:
   max_sent_length: 400
   transform_cfg:
     img_size: 224
-    color_jitter: false
+    color_jitter: true
     center_crop_size: 224 #disattivato
     center_crop: false
     custom_crop_width: 700 #per prendere solo la parte sinistra
@@ -41,7 +41,7 @@ training:
   pretrained_path: /home/scavalent/Isolated_training/Isolated_weights.pt # modello ISLR
   random_seed: 321
   shuffle: True
-  num_workers: 4
+  num_workers: 8
   batch_size: 1  # video lunghi = batch più piccolo
   total_epoch: 100
   keep_last_ckpts: 1
