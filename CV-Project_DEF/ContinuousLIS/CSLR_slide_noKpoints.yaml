@@ -23,7 +23,7 @@ data:
     img_size: 224
     color_jitter: true
     center_crop_size: 224 #disattivato
-    center_crop: true
+    center_crop: false
     #custom_crop_width: 700 #per prendere solo la parte sinistra
     #custom_crop_height: 700 #altezza
     aspect_ratio_min: 0.75
