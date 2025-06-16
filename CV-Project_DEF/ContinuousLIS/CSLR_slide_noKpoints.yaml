@@ -12,7 +12,7 @@ data:
   dataset_name: ContinuousLIS
   level: word
   txt_lowercase: true
-  num_output_frames: 64  # più lungo per video continui
+  num_output_frames: 48  # più lungo per video continui
   win_size: 16      #AGGIUNTO
   stride: 1         #AGGIUNTO
   split_size: 36    #AGGIUNTO
