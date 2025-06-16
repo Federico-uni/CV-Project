@@ -21,7 +21,7 @@ data:
   max_sent_length: 400
   transform_cfg:
     img_size: 224
-    color_jitter: true
+    color_jitter: false
     center_crop_size: 224 #disattivato
     center_crop: false
     custom_crop_width: 700 #per prendere solo la parte sinistra
