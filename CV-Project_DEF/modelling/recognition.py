@@ -394,7 +394,7 @@ class RecognitionNetwork(torch.nn.Module):
             
             # creiamo un tensore zero [B, C]
             multi_hot = logits.new_zeros((B, C))
-            print("multi_hot: ", multi_hot
+            print("multi_hot: ", multi_hot)
             print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
             # labels viene passato come lista di liste
             for i, idx_list in enumerate(labels):
