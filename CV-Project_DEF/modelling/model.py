@@ -89,9 +89,6 @@ class SignLanguageModel(torch.nn.Module):
 
     def predict_gloss_from_logits(self, gloss_logits, k=10):
         if self.task == 'ISLR':
-            print("+++++++++++++++++++++++++++++++++++++++++++++++++")
-            print(self.recognition_network.decode(gloss_logits=gloss_logits, k=k))
-            print("+++++++++++++++++++++++++++++++++++++++++++++++++")
             return self.recognition_network.decode(gloss_logits=gloss_logits, k=k)
         elif self.task == 'bag_denoise':
             return self.denoiser.decode(logits=gloss_logits, k=k)
