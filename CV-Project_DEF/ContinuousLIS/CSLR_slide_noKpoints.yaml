@@ -43,7 +43,7 @@ training:
   shuffle: True
   num_workers: 4
   batch_size: 1  # video lunghi = batch più piccolo
-  total_epoch: 100
+  total_epoch: 30
   keep_last_ckpts: 1
   validation: 
     unit: epoch
