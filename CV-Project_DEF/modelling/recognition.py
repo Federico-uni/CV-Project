@@ -379,15 +379,7 @@ class RecognitionNetwork(torch.nn.Module):
     def compute_recognition_loss(self, logits, labels, **kwargs):
         with open('/home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/CSLR_slide_noKpoints.yaml', 'r', encoding='utf-8') as f:
             cfg_imported = yaml.safe_load(f)
-        print("CFG: ", cfg_imported)
-        print("CFG->Data: ", cfg_imported['data'])
-        print("CFG->Data->IsContinuous: ", cfg_imported['data']['isContinuous'])
-        is_continuous = cfg['data'].get('isContinuous', False)
-        print("Is continuous: ", is_continuous)
-        #isContinuous = self.cfg['data']['isContinuous']
-        #print("IS CONTINUOUS: ", isContinuous)
-        input('ok: ')
-        if isContinuous == False:
+        if cfg_imported['data']['isContinuous'] == False:
             # comportamento originario (CrossEntropy o LabelSmoothCE)
             if isinstance(self.recognition_loss_func, torch.nn.CrossEntropyLoss):
                 return self.recognition_loss_func(logits, labels)
