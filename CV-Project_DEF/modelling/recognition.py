@@ -389,12 +389,18 @@ class RecognitionNetwork(torch.nn.Module):
             # multi-label: labels è lista di liste di indici, costruiamo il target multi-hot
             # logits: [B, C]
             B, C = logits.size()
+            print("B batch size (numero di esempi nel batch): ", B)
+            print("C numero totale di classi (il vocabolario di output): ", C)
+            
             # creiamo un tensore zero [B, C]
             multi_hot = logits.new_zeros((B, C))
+            print("multi_hot: ", multi_hot
+            print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
             # labels viene passato come lista di liste
             for i, idx_list in enumerate(labels):
                 # idx_list es. [3, 15, 42]
                 multi_hot[i, idx_list] = 1.0
+            print("multi_hot del primo video: ",  multi_hot[0]
             # usiamo BCEWithLogitsLoss per il multi-label
             bce = torch.nn.BCEWithLogitsLoss(reduction='mean')
             return bce(logits, multi_hot)
