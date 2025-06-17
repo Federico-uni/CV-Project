@@ -51,23 +51,48 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
             new_batch.extend([item_lst[i] for i in idx])
         batch = new_batch
                    
-    outputs = {'names': [sample['name'] for sample in batch],
-                'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
-                'labels': [vocab.index(sample['label']) for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [0 for sample in batch],
-                # 'aug': [sample['aug'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_iso', 'phoenix_comb_iso'] and is_train else [0 for sample in batch],  #if IOU augmented
-                'aug': [0 for sample in batch],
-                'vlens': [sample['seq_len'] for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [sample['num_frames'] for sample in batch],
-                # 'raw_vlens': [sample['raw_seq_len'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_comb_iso'] and is_train else [0 for sample in batch],
-                'raw_vlens': [0 for sample in batch],
-                'ori_video_files': [sample['video_file'] for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [sample['name'] for sample in batch],
-                'gls_ref': [sample['gloss'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else None,
-                'bag_labels': [sample['bag'] for sample in batch] if use_bag else None,
-                'iou_labels': None,
-                'temp_idx': None,
-                'sgn_videos': None,
-                'sgn_keypoints': None,
-                'start_idx': None
-                }
+    if data_cfg['isContinuous'] == False:
+        outputs = {'names': [sample['name'] for sample in batch],
+                    'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
+                    'labels': [vocab.index(sample['label']) for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [0 for sample in batch],
+                    # 'aug': [sample['aug'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_iso', 'phoenix_comb_iso'] and is_train else [0 for sample in batch],  #if IOU augmented
+                    'aug': [0 for sample in batch],
+                    'vlens': [sample['seq_len'] for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [sample['num_frames'] for sample in batch],
+                    # 'raw_vlens': [sample['raw_seq_len'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_comb_iso'] and is_train else [0 for sample in batch],
+                    'raw_vlens': [0 for sample in batch],
+                    'ori_video_files': [sample['video_file'] for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [sample['name'] for sample in batch],
+                    'gls_ref': [sample['gloss'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else None,
+                    'bag_labels': [sample['bag'] for sample in batch] if use_bag else None,
+                    'iou_labels': None,
+                    'temp_idx': None,
+                    'sgn_videos': None,
+                    'sgn_keypoints': None,
+                    'start_idx': None
+                    }
+     
+                    
+    else:
+        sample = batch[0]
+        indices = [vocab.index(word) for word in sample['label']]
+        print("STAMPA: ", indices[:5])
+        
+        outputs = {'names': [sample['name'] for sample in batch],
+            'word_embs': None if word_emb_tab is None else torch.stack([torch.from_numpy(word_emb_tab[sample['label']]) for sample in batch], dim=0),
+            'labels': [vocab.index(sample['label']) for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [0 for sample in batch],
+            # 'aug': [sample['aug'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_iso', 'phoenix_comb_iso'] and is_train else [0 for sample in batch],  #if IOU augmented
+            'aug': [0 for sample in batch],
+            'vlens': [sample['seq_len'] for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [sample['num_frames'] for sample in batch],
+            # 'raw_vlens': [sample['raw_seq_len'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix_comb_iso'] and is_train else [0 for sample in batch],
+            'raw_vlens': [0 for sample in batch],
+            'ori_video_files': [sample['video_file'] for sample in batch] if data_cfg['dataset_name'] not in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else [sample['name'] for sample in batch],
+            'gls_ref': [sample['gloss'] for sample in batch] if data_cfg['dataset_name'] in ['phoenix', 'phoenix2014', 'phoenixcomb', 'csl'] else None,
+            'bag_labels': [sample['bag'] for sample in batch] if use_bag else None,
+            'iou_labels': None,
+            'temp_idx': None,
+            'sgn_videos': None,
+            'sgn_keypoints': None,
+            'start_idx': None
+            }
 
     #print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     #for sample in batch:
