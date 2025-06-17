@@ -147,7 +147,7 @@ def evaluation(model, val_dataloader, cfg,
                     results[name][f'{logits_name}hyp'] = hyp
 
                     # SINGLE vs MULTI-LABEL REF
-                    if cfg['data'].get('isContinuous', True):
+                    if cfg['data']['isContinuous']==False:
                         ref = batch['labels'][i].item()
                     else:
                         labels_i = batch['labels'][i]
