@@ -73,7 +73,7 @@ def collate_fn_(batch, data_cfg, is_train, vocab, name2keypoint, word_emb_tab, v
                     
     else:
         sample = batch[0]
-        indices = [vocab.index(word) for word in sample['label']]
+        indices = [vocab.index(word.upper()) for word in sample['label']]
         print("STAMPA: ", indices[:5])
         
         outputs = {'names': [sample['name'] for sample in batch],
