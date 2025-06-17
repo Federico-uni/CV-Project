@@ -50,7 +50,7 @@ training:
     freq: 1
     cfg:
       recognition:
-        beam_size: 1 #MODIFICATO
+        beam_size: 10 #MODIFICATO
   optimization:
     optimizer: Adam
     learning_rate:
