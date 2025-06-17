@@ -376,11 +376,28 @@ class RecognitionNetwork(torch.nn.Module):
 
 
     def compute_recognition_loss(self, logits, labels, **kwargs):
-        if isinstance(self.recognition_loss_func, torch.nn.CrossEntropyLoss):
-            return self.recognition_loss_func(logits, labels)
+        isContinuous = cfg.get('isContinuous', True)
+        print("IS CONTINUOUS: ", isContinuous)
+        input('ok: ')
+        if isContinuous == False:
+            # comportamento originario (CrossEntropy o LabelSmoothCE)
+            if isinstance(self.recognition_loss_func, torch.nn.CrossEntropyLoss):
+                return self.recognition_loss_func(logits, labels)
+            else:
+                return self.recognition_loss_func(logits, labels, **kwargs)
         else:
-            return self.recognition_loss_func(logits, labels, **kwargs)
-
+            # multi-label: labels è lista di liste di indici, costruiamo il target multi-hot
+            # logits: [B, C]
+            B, C = logits.size()
+            # creiamo un tensore zero [B, C]
+            multi_hot = logits.new_zeros((B, C))
+            # labels viene passato come lista di liste
+            for i, idx_list in enumerate(labels):
+                # idx_list es. [3, 15, 42]
+                multi_hot[i, idx_list] = 1.0
+            # usiamo BCEWithLogitsLoss per il multi-label
+            bce = torch.nn.BCEWithLogitsLoss(reduction='mean')
+            return bce(logits, multi_hot)
 
     def decode(self, gloss_logits, k=10):
         # get topk decoded results
