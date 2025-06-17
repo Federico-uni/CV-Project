@@ -376,7 +376,7 @@ class RecognitionNetwork(torch.nn.Module):
 
 
     def compute_recognition_loss(self, logits, labels, **kwargs):
-        isContinuous = cfg.get('isContinuous', True)
+        isContinuous = self.cfg['data']['isContinuous']
         print("IS CONTINUOUS: ", isContinuous)
         input('ok: ')
         if isContinuous == False:
