@@ -8,7 +8,7 @@ data:
   train: /home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/train.pkl
   dev: /home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/val.pkl
   test: /home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/test.pkl
-  vocab_file: /ContinuousLIS/pkl/continuous_vocab.json
+  vocab_file: /home/scavalent/CV-Project/CV-Project_DEF/ContinuousLIS/pkl/continuous_vocab.json
   dataset_name: ContinuousLIS
   level: word
   txt_lowercase: true
