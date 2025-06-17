@@ -400,7 +400,7 @@ class RecognitionNetwork(torch.nn.Module):
             for i, idx_list in enumerate(labels):
                 # idx_list es. [3, 15, 42]
                 multi_hot[i, idx_list] = 1.0
-            print("multi_hot del primo video: ",  multi_hot[0]
+            print("multi_hot del primo video: ",  multi_hot[0])
             # usiamo BCEWithLogitsLoss per il multi-label
             bce = torch.nn.BCEWithLogitsLoss(reduction='mean')
             return bce(logits, multi_hot)
