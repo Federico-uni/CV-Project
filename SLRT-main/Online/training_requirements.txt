@@ -1,9 +1,0 @@
-wheel
-mmcv==1.7.1
-torch==2.0.0
-torchvision==0.15.1
-wandb
-tensorboard==2.17.1
-timm==0.6.13
-transformers==4.47.0
-lintel
