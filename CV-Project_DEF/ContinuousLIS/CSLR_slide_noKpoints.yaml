@@ -69,7 +69,7 @@ model:
     s3d:
       pretrained_ckpt: /home/scavalent/Isolated_training/Isolated_weights.pt  # riusa feature extractor
       use_block: 5
-      freeze_block: 3 #cambiato
+      freeze_block: 5 #cambiato
     keypoint_s3d:
       in_channel: 0
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
