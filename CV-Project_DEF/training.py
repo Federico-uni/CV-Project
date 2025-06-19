@@ -41,15 +41,15 @@ from copy import deepcopy
 
 
 # Numero di dispositivo “logico” usato da PyTorch
-print("Current CUDA device index:", torch.cuda.current_device())
+#print("Current CUDA device index:", torch.cuda.current_device())
 # Nome della GPU associata a quel device
-print("CUDA device name:", torch.cuda.get_device_name(torch.cuda.current_device()))
+#print("CUDA device name:", torch.cuda.get_device_name(torch.cuda.current_device()))
 # Mappa i device virtuali ai nomi
-for i in range(torch.cuda.device_count()):
-    print(f" device {i}: ", torch.cuda.get_device_name(i))
+#for i in range(torch.cuda.device_count()):
+#    print(f" device {i}: ", torch.cuda.get_device_name(i))
 
 # Quale GPU fisica stai esponendo
-print("CUDA_VISIBLE_DEVICES         →", os.environ.get("CUDA_VISIBLE_DEVICES"))
+#print("CUDA_VISIBLE_DEVICES         →", os.environ.get("CUDA_VISIBLE_DEVICES"))
 #input('Type ok: ')
 
 
