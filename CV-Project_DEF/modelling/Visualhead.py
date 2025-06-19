@@ -38,8 +38,6 @@ class SepConvVisualHead(torch.nn.Module):
         if self.contras_setting is not None:
             self.word_emb_tab = kwargs.pop('word_emb_tab', None)
             self.word_emb_dim = kwargs.pop('word_emb_dim', 0)
-            print("self.word_emb_tab is not None: ", self.word_emb_tab is not None)
-            print("self.word_emb_dim > 0: ", self.word_emb_dim > 0)
             assert self.word_emb_tab is not None and self.word_emb_dim > 0
             self.word_emb_tab.requires_grad = False
             self.word_emb_sim = torch.matmul(F.normalize(self.word_emb_tab, dim=-1), F.normalize(self.word_emb_tab, dim=-1).T)
