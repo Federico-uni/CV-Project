@@ -1,4 +1,4 @@
-# LIS
+# SLR: A Deep Tranfer Learning Approach
 
 ## Clone the Repository
 
@@ -49,10 +49,10 @@ Please download the required datasets and pretrained models from the following l
 
 - **Dataset:**
   - [Download Continuous Data](https://unibari-my.sharepoint.com/:u:/g/personal/f_valentino7_studenti_uniba_it/EVF35QQHTTtJpklrk30VJrMBFD8dWWOBHAtN8UpubLrimw?e=OfMxAT)
+  - [Download Isolated Data](https://unibari-my.sharepoint.com/:u:/g/personal/b_scavo_studenti_uniba_it/EfO9RBSwbXlFuxVyS-fE_3sBuH39-pr4zdfwcaWutIkxiQ?e=owIXYe)
 
-- **Pretrained Models:**
-  - [Isolated_training](https://unibari-my.sharepoint.com/:u:/g/personal/b_scavo_studenti_uniba_it/EWXvFzF5VltDo_JrtOhk4hIBPPczupz8huf2ItI6odeRyg?e=yLMnZG)
-  - [MBart_pt](https://unibari-my.sharepoint.com/:u:/g/personal/b_scavo_studenti_uniba_it/EVJGswSwIMdCt8vxXVhOImkB78IVXrwBXQhJMynYJTZfew?e=EYo5Xc)
+- **Pretrained Model:**
+  - [Isolated_preTrainedModel](https://unibari-my.sharepoint.com/:u:/g/personal/b_scavo_studenti_uniba_it/EWXvFzF5VltDo_JrtOhk4hIBPPczupz8huf2ItI6odeRyg?e=yLMnZG)
 
 ---
 
