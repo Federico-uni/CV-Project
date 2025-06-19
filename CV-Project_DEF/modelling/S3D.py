@@ -92,6 +92,7 @@ class S3D_backbone(torch.nn.Module):
             if not filename:
                 raise FileNotFoundError(f"❌ Nessun file .pt trovato nella directory: {model_path}")
     
+            print(f"✅ Caricamento del modello pre-addestrato (actioncls): {filename[0]}")
             checkpoint = torch.load(filename[0], map_location='cpu')
             state_dict = checkpoint
             new_dict = {k.replace('module.', 'backbone.'): v for k, v in state_dict.items()}
