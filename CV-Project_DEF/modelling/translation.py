@@ -24,9 +24,6 @@ class TranslationNetwork(torch.nn.Module):
         else:
             self.logger.info('Train mBart from scratch!')
             config = MBartConfig()
-            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-            print(" MBART CONFIG: ", self.tokenizer.gloss2id)
-            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
             config.vocab_size = len(self.tokenizer.gloss2id)
             self.model = MBartForConditionalGeneration(config)
 
