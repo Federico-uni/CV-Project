@@ -68,8 +68,8 @@ model:
       gloss2id_file: /ext/LISDataset/pretrained_models/mBart_de_2/mBart_de_2/gloss2ids.pkl #Non viene usato
     s3d:
       pretrained_ckpt: /home/scavalent/Isolated_training/Isolated_weights.pt  # riusa feature extractor
-      use_block: 1
-      freeze_block: 5 #cambiato
+      use_block: 5
+      freeze_block: 3 #cambiato
     keypoint_s3d:
       in_channel: 0
       pretrained_ckpt: SLRT-main/Online/CSLR/pretrained_models/S3D_kinetics400.pt
