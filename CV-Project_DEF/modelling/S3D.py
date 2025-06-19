@@ -85,16 +85,13 @@ class S3D_backbone(torch.nn.Module):
                     self.pyramid = PyramidNetwork(channels=[1024,832,480,192,64], kernel_size=3, num_levels=self.num_levels, temp_scale=[2,2,1,1], spat_scale=[2,2,2,2],
                                                     adapt_first=adapt_first)
 
-    def load_s3d_model_weight(self, model_path): 
-        print(f"DEBUG: Percorso del modello atteso -> {model_path}")
-    
+    def load_s3d_model_weight(self, model_path):
         if 'actioncls' in model_path:
             filename = glob.glob(os.path.join(model_path, '*.pt'))
     
             if not filename:
                 raise FileNotFoundError(f"❌ Nessun file .pt trovato nella directory: {model_path}")
     
-            print(f"✅ Caricamento del modello pre-addestrato (actioncls): {filename[0]}")
             checkpoint = torch.load(filename[0], map_location='cpu')
             state_dict = checkpoint
             new_dict = {k.replace('module.', 'backbone.'): v for k, v in state_dict.items()}
